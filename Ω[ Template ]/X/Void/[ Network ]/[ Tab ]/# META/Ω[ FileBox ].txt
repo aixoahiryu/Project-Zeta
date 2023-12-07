@@ -1,0 +1,16 @@
+Active|<Home>/[ Active ]
+Storage|<Home>/[ Storage ]
+History|<Home>/[ History ]
+---
+Scraps|<Scraps>/tab
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

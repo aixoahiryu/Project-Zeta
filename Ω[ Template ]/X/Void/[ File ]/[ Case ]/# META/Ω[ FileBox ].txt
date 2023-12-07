@@ -1,0 +1,16 @@
+Active|<Home>/Active
+Closed|<Home>/Closed
+Cold|<Home>/Cold
+Expired|<Home>/Expired
+Low-priority|<Home>/Low-priority
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

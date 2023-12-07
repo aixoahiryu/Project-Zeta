@@ -1,0 +1,14 @@
+Chronos|<Home>/[ Chronos ]
+Tag|<Home>/[ Tag ]
+Random|<Home>/[ Random ]
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

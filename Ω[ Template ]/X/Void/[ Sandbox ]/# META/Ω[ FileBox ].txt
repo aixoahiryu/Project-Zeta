@@ -1,0 +1,16 @@
+Demo|<Home>/[ Demo ]
+Tech|<Home>/[ Tech ]
+Tools|<Home>/[ Tools ]
+---
+Scraps|<Scraps>/sandbox
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

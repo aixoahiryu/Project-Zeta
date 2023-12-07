@@ -1,0 +1,14 @@
+Task|<Home>/[ Task ]
+Journal|<Home>/[ Journal ]
+Tools|<Home>/[ Tools ]
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

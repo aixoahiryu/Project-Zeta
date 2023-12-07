@@ -1,0 +1,16 @@
+Schema|<Home>/[ Schema ]
+Debug|<Home>/[ Debug ]
+Build|<Home>/[ Build ]
+---
+Scraps|<Scraps>/project
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

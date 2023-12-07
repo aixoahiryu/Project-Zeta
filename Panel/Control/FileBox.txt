@@ -1,0 +1,20 @@
+C|C:\
+D|D:\
+---
+╬|<X>\Void\[ Workspace ]\╬
+_|D:\_
+Scraps|<Scraps>
+Data|D:\Data
+Core|<Downstream>
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+[ Vector ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F
