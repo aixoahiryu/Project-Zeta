@@ -10,6 +10,7 @@ class CodeMenu(Window):
 
 		Button(self.frame, text=' Zeta', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.ZETA)).pack(side='top', fill='x')
 		Button(self.frame, text=' X', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.X)).pack(side='top', fill='x')
+		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		Button(self.frame, text=' ZL-Core', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.Utility.Launch.Explorer(geometry=Workspace.geometry['sidebar'], transient=Workspace.panel[Workspace.active]['root'], path='<Downstream>')).pack(side='top', fill='x')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		Button(self.frame, text=' Project', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.Utility.Launch.Explorer(geometry=Workspace.geometry['sidebar'], transient=Workspace.panel[Workspace.active]['root'], path='<X>/Void/[ Project ]')).pack(side='top', fill='x')

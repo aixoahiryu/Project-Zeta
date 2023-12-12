@@ -134,6 +134,7 @@ def addworkspace():
 
 wmenu = Menu(sidebar, tearoff=0)
 wmenu.add_command(label="[ New ]", command=addworkspace)
+wmenu.add_separator()
 wmenu.add_radiobutton(label="File", variable=selected_workspace, value="File", command=switch)
 wmenu.add_separator()
 

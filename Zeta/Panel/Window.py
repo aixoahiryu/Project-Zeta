@@ -7,6 +7,7 @@ class Primary(Toplevel2):
     def __init__(self, draggable=False, border='mono', color=7, color2='', mode='basic', style='even', title='Title', safemode=False, *args, **kwargs):
         Toplevel2.__init__(self, *args, **kwargs)
         self.overrideredirect(True)
+        self.color2 = color2
         self.neon = Zeta.Color.Neon(color=color, color2=color2).hex
         self.hue = Zeta.Color.Neon(color=color, color2=color2).hue
         self.tint = Zeta.Color.Neon(color=color, color2=color2).tint
@@ -35,6 +36,7 @@ class Fallback(Toplevel2):
     def __init__(self, draggable=False, color=7, color2='', mode='basic', title='Title', *args, **kwargs):
         Toplevel2.__init__(self, *args, **kwargs)
         self.overrideredirect(True)
+        self.color2 = color2
         self.neon = Zeta.Color.Neon(color=color, color2=color2).hex
         self.hue = Zeta.Color.Neon(color=color, color2=color2).hue
         if draggable: self.bind_rightclick()

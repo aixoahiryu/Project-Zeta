@@ -61,9 +61,14 @@ class FileBox(Frame):
 		if (style.configure(f"{self.color2}.Treeview")==None):
 			style.configure(f"{self.color2}.Treeview", background=hue, foreground=fgcolor, fieldbackground=hue)
 			style.map(f"{self.color2}.Treeview", background=[('selected', tint)], foreground=[('selected', neon)])
-			style.configure("TCombobox", background=bgcolor, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor, arrowcolor=fgcolor)
-			style.map("TCombobox", background=[('readonly', bgcolor)], foreground=[('readonly', fgcolor)], fieldbackground=[('readonly', bgcolor)], highlightcolor=[('readonly', fgcolor)], arrowcolor=[('readonly', fgcolor)] )
-			style.configure("TScrollbar", background=bgcolor, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor, troughcolor=bgcolor, arrowcolor=fgcolor)
+			# style.configure("TCombobox", background=bgcolor, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor, arrowcolor=fgcolor)
+			# style.map("TCombobox", background=[('readonly', bgcolor)], foreground=[('readonly', fgcolor)], fieldbackground=[('readonly', bgcolor)], highlightcolor=[('readonly', fgcolor)], arrowcolor=[('readonly', fgcolor)] )
+			style.configure(f"{self.color2}.TCombobox", background=hue, foreground=fgcolor, fieldbackground=hue, highlightcolor=fgcolor, arrowcolor=fgcolor)
+			style.map(f"{self.color2}.TCombobox", background=[('readonly', hue)], foreground=[('readonly', fgcolor)], fieldbackground=[('readonly', hue)], highlightcolor=[('readonly', fgcolor)], arrowcolor=[('readonly', fgcolor)] )
+			# style.configure(f"TScrollbar", background=bgcolor, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor, troughcolor=bgcolor, arrowcolor=fgcolor)
+			# style.configure(f"{self.color2}.TScrollbar", background=hue, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor, troughcolor=bgcolor, arrowcolor=fgcolor)
+			style.configure(f"{self.color2}.Vertical.TScrollbar", background=hue, foreground=fgcolor, fieldbackground=hue, highlightcolor=fgcolor, troughcolor=hue, arrowcolor=fgcolor)
+			style.configure(f"{self.color2}.Horizontal.TScrollbar", background=hue, foreground=fgcolor, fieldbackground=hue, highlightcolor=fgcolor, troughcolor=hue, arrowcolor=fgcolor)
 			style.configure("Menu", background=bgcolor, foreground=fgcolor, fieldbackground=bgcolor, highlightcolor=fgcolor)
 		# if neonmode and (style.configure("neon.Treeview")==None):
 		# 	style.configure("neon.Treeview", background=self.colorbg, foreground=self.colorfg, fieldbackground=self.colorbg)
@@ -118,14 +123,14 @@ class FileBox(Frame):
 		frame3_2 = Frame(frame3)
 		frame3_2.grid(sticky='E', row=0, column=1)
 		frame3.grid_columnconfigure(1, weight=1)
-		self.combo1 = ttk.Combobox(frame3_2, state="readonly", values=['--------------'], width=10, takefocus=0)
+		self.combo1 = ttk.Combobox(frame3_2, state="readonly", values=['--------------'], width=10, takefocus=0, style=f"{self.color2}.TCombobox")
 		self.combo1.grid(sticky='E', row=0, column=0)
 		self.combo1.bind('<Button-3>', lambda e: self.combo1.configure(state="normal"))
 		self.combo1.bind('<Button-1>', lambda e: self.workspace_select())
 		self.combo1.bind('<<ComboboxSelected>>', lambda e: self.workspace_select())
 
-		self.vsb = ttk.Scrollbar(self, orient="vertical")
-		self.hsb = ttk.Scrollbar(self, orient="horizontal")
+		self.vsb = ttk.Scrollbar(self, orient="vertical", style=f"{self.color2}.Vertical.TScrollbar")
+		self.hsb = ttk.Scrollbar(self, orient="horizontal", style=f"{self.color2}.Horizontal.TScrollbar")
 		self.tree = ttk.Treeview(self, columns=("fullpath", "type", "size"), show="tree", style=f"{self.color2}.Treeview",
 		# self.tree = ttk.Treeview(self, columns=("fullpath", "type", "size"), show="tree", style="neon.Treeview" if neonmode else "self.Treeview",
 			displaycolumns="size", yscrollcommand=lambda f, l: self.autoscroll(self.vsb, f, l),

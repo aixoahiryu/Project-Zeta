@@ -11,15 +11,14 @@ class REMenu(Window):
 		self.imgrecon=Zeta.Image.Icon.Load(icon='systemw', icontype='bw').image
 		self.imgexploit=Zeta.Image.Icon.Load(icon='debugw', icontype='bw').image
 
-		Button(self.frame, text=' # List', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.ZETA)).pack(side='top', fill='x')
-		Button(self.frame, text=' # Data', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.X)).pack(side='top', fill='x')
+		Button2(self.frame, text=' ID', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Analysis', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Decompiler', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Disassembler', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['IDA', 'Ghidra', 'Binary ninja'], side='top', fill='x')
+		Button2(self.frame, text=' Tools', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['PE', 'Resource', 'Hex'], side='top', fill='x')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
-		Button(self.frame, text=' [ Intercept ]', relief='flat', image=self.imgintercept, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Recon ]', relief='flat', image=self.imgrecon, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Exploit ]', relief='flat', image=self.imgexploit, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Tools ]', relief='flat', image=self.imghdd, compound='left', anchor='w').pack(side='top', fill='x')
-		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
-		Button(self.frame, text='Terminal', relief='flat', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.X+r'/Void/Upload')).pack(side='top', fill='x')
+		Button2(self.frame, text=' Source', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Sample', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		
 		self.theme(self.frame, bg=self.hue, fg='#ffffff')

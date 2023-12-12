@@ -21,9 +21,9 @@ class Monolith(Window):
 	def InitWindow(self):
 		x = Window(mode='border', color2='black')
 		x.attributes('-topmost', True)
-		Button2(x.frame, text=' [ Agenda ]', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
-		Button2(x.frame, text=' [ World ]', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
-		Button2(x.frame, text=' [ Vector ]', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
+		Button2(x.frame, text=' [ Agenda ]', relief='flat', image=self.corner, compound='left', anchor='w', path='<Downstream>/X/Null/# META/[ Agenda ]', geometry='left', menucolor='black', listdir=True).pack(side='top', fill='x')
+		Button2(x.frame, text=' [ World ]', relief='flat', image=self.corner, compound='left', anchor='w', path='<Downstream>/X/Null/# META/[ World ]', geometry='left', menucolor='black', listdir=True).pack(side='top', fill='x')
+		Button2(x.frame, text=' [ Vector ]', relief='flat', image=self.corner, compound='left', anchor='w', path='<Downstream>/X/Null/# META/[ Vector ]', geometry='left', menucolor='black', listdir=True).pack(side='top', fill='x')
 		Frame(x.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		Button2(x.frame, text=' Backup', relief='flat', image=self.corner, compound='left', anchor='w', geometry='left', menucolor='black', listdir=True, path=Zeta.Utility.Format.Path(r'<Downstream>/X/Null/# META/Backup')).pack(side='top', fill='x')
 		x.theme(x.frame, fg=x.neon, bg=x.hue)

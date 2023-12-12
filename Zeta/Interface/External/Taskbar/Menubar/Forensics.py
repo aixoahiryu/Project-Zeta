@@ -11,15 +11,15 @@ class ForensicsMenu(Window):
 		self.imgrecon=Zeta.Image.Icon.Load(icon='systemw', icontype='bw').image
 		self.imgexploit=Zeta.Image.Icon.Load(icon='debugw', icontype='bw').image
 
-		Button(self.frame, text=' # List', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.ZETA)).pack(side='top', fill='x')
-		Button(self.frame, text=' # Data', relief='flat', image=self.imghdd, compound='left', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.X)).pack(side='top', fill='x')
+		Button2(self.frame, text=' Case', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['maltego', 'encase'], side='top', fill='x')
+		Button2(self.frame, text=' Framework', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Tools', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['OS', 'Program', 'File[extract, recovery, steal]'], side='top', fill='x')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
-		Button(self.frame, text=' [ Intercept ]', relief='flat', image=self.imgintercept, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Recon ]', relief='flat', image=self.imgrecon, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Exploit ]', relief='flat', image=self.imgexploit, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(self.frame, text=' [ Tools ]', relief='flat', image=self.imghdd, compound='left', anchor='w').pack(side='top', fill='x')
-		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
-		Button(self.frame, text='Terminal', relief='flat', anchor='w', command=lambda: Zeta.System.OS.open(Zeta.System.Path.Core.X+r'/Void/Upload')).pack(side='top', fill='x')
+		Button2(self.frame, text=' Machine', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' OSINT', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Biology', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['phenotype', 'database', 'genetic', 'name'], side='top', fill='x')
+		Button2(self.frame, text=' Psychology', relief='flat', image=self.imghdd, compound='left', anchor='w', side='top', fill='x')
+		Button2(self.frame, text=' Technical', relief='flat', image=self.imghdd, compound='left', anchor='w', buffer=['electrical', 'material', 'lingustics', 'fire'], side='top', fill='x')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		
 		self.theme(self.frame, bg=self.hue, fg='#ffffff')

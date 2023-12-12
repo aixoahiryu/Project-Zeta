@@ -18,8 +18,8 @@ class TextBox(Frame):
 		# self.text.pack(fill='both', expand=True) # in_=
 		textContainer = tk.Frame(self)
 		self.text = tk.Text(textContainer, wrap="none", undo=True, tabs='0.5c', font=("Lucida Console", 8, "normal"), highlightthickness=0, borderwidth=0)
-		textVsb = ttk.Scrollbar(textContainer, orient="vertical", command=self.text.yview)
-		textHsb = ttk.Scrollbar(textContainer, orient="horizontal", command=self.text.xview)
+		textVsb = ttk.Scrollbar(textContainer, orient="vertical", command=self.text.yview, style=f"{self.winfo_toplevel().color2}.Vertical.TScrollbar")
+		textHsb = ttk.Scrollbar(textContainer, orient="horizontal", command=self.text.xview, style=f"{self.winfo_toplevel().color2}.Horizontal.TScrollbar")
 		self.text.configure(yscrollcommand=lambda f, l: self.autoscroll(textVsb, f, l), xscrollcommand=lambda f, l:self.autoscroll(textHsb, f, l))
 		self.text.grid(row=0, column=0, sticky="nsew")
 		textVsb.grid(row=0, column=1, sticky="ns")
@@ -29,6 +29,8 @@ class TextBox(Frame):
 		textContainer.pack(side="top", fill="both", expand=True)
 		self.text.bind("<Tab>", self.tab_pressed)
 
+		self.wordwrap = tk.StringVar(value=self.text['wrap'])
+		self.readonly = tk.StringVar(value=self.text['state'])
 		self.path = ''
 		if file!='': self.read(file)
 
@@ -47,8 +49,6 @@ class TextBox(Frame):
 		self.text.bind('<e>', lambda e: self.os('editor'))
 		self.text.bind('<s>', lambda e: self.os('sidebar'))
 
-		self.wordwrap = tk.StringVar(value=self.text['wrap'])
-		self.readonly = tk.StringVar(value=self.text['state'])
 		menubar = Menu(self, tearoff=0)
 		menubar.add_command(label="Launch", command=self.os)
 		menubar.add_command(label="Edit", command=lambda: self.edit(self.path))
@@ -98,7 +98,7 @@ class TextBox(Frame):
 			self.text.delete('1.0', 'end')
 			self.text.insert('end', content)
 		self.text['state'] = 'disabled'
-		# self.readonly.set(self.text['state'])
+		self.readonly.set(self.text['state'])
 		self.version()
 
 	def edit(self, path):
