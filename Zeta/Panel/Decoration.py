@@ -15,9 +15,9 @@ class Basic(Frame):
 		#body = Frame(self)
 		self.winfo_toplevel().decoration = self
 		
-		msg = Label(top, wraplength='4i', justify=LEFT, foreground=self.neon, background=self.hue, font=("Courier New", 10, "normal"))
-		msg['text'] = title
-		msg.grid(row=0, column=0, sticky='NW')
+		self.msg = Label(top, wraplength='4i', justify=LEFT, foreground=self.neon, background=self.hue, font=("Courier New", 10, "normal"))
+		self.msg['text'] = title
+		self.msg.grid(row=0, column=0, sticky='NW')
 		btnframe = Frame(top, background=self.hue)
 		btnframe.grid(row=0, column=1, sticky='E')
 
@@ -26,7 +26,7 @@ class Basic(Frame):
 		self.maximized = False
 		self.safemode = safemode
 		Button(btnframe, text=u'Ζ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().transcend).pack(side='left')
-		Button(btnframe, text=u'Α', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
+		Button(btnframe, text=u'Α', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=lambda: self.winfo_toplevel().adopt(Workspace.panel[Workspace.active]['root'])).pack(side='left')
 		Button(btnframe, text=u'Σ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
 		Button(btnframe, text=u'Ω', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
 		Button(btnframe, text=u'¦', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
@@ -37,7 +37,7 @@ class Basic(Frame):
 		self.winfo_toplevel().bind('<Control-w>', lambda e: self.winfo_toplevel().close())
 		try:
 			self.winfo_toplevel().bind_drag(top)
-			self.winfo_toplevel().bind_drag(msg)
+			self.winfo_toplevel().bind_drag(self.msg)
 			self.winfo_toplevel().bind_drag(btnframe)
 			# top.bind("<ButtonPress-1>", self.winfo_toplevel().start_move)
 			# top.bind("<ButtonRelease-1>", self.winfo_toplevel().stop_move)
@@ -54,3 +54,8 @@ class Basic(Frame):
 	def close(self):
 		if self.safemode: self.winfo_toplevel().hide()
 		else: self.winfo_toplevel().close()
+
+	def title(self, title=''):
+		if title=='': return self.msg['text']
+		# else: self.msg.configure(text=title)
+		else: self.msg['text'] = title

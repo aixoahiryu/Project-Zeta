@@ -392,6 +392,7 @@ class FileBox(Frame):
 	def editor(self):
 		editor = Zeta.Utility.Launch.Editor(path=self.fullpath, color=self.color2, title=os.path.split(self.fullpath)[1])
 		editor.transient(self.winfo_toplevel())
+		# if self.panelgeometry!='right': editor.geometry('333x333')
 		Zeta.System.WM.geocalc(editor, self, self.panelgeometry, self.winfo_toplevel())
 
 

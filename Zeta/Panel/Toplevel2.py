@@ -53,9 +53,16 @@ class Toplevel2(Toplevel):
 		self.owner.append(master)
 		master.child.append(self)
 
-	def transcend(self):
+	def orphan(self):
 		for w in self.owner: w.child.remove(self)
 		self.owner = []
+
+	def adopt(self, master):
+		self.orphan()
+		self.transient(master)
+
+	def transcend(self):
+		self.orphan()
 		self.bind('<Expose>', lambda e: self.overrideredirect(True))
 		self.transcended = True
 

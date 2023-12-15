@@ -138,9 +138,11 @@ class Workspace():
 
 	def toggle_sidebar(self, group=''):
 		if self.hidden:
+			if group=='': return
 			self.show('System')
-			if group=='': self.show(self.active)
-			else: self.show(group)
+			self.show(group)
+			# if group=='': self.show(self.active)
+			# else: self.show(group)
 		else:
 			self.hide(self.active)
 			self.hide('System')

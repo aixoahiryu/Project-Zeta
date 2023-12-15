@@ -128,7 +128,7 @@ def addworkspace():
 	
 	path = Zeta.Utility.Format.Path('<Scraps>/workspace/void/'+name)
 	if not os.path.exists(path): os.makedirs(path)
-	wpanel = Zeta.Utility.Launch.Explorer(color='white', mode='border', path=path, geometry=sidebar2.geometry(), panelgeometry='left')
+	wpanel = Zeta.Utility.Launch.Explorer(color='green', mode='border', path=path, geometry=sidebar2.geometry(), panelgeometry='left')
 	Workspace.toggle_bind(Panel[name]['root'], wpanel)
 	switch(name)
 

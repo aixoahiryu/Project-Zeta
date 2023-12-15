@@ -37,7 +37,7 @@ class TextBox(Frame):
 		self.text.bind('<Control-o>', lambda e: self.open())
 		self.text.bind('<Control-e>', lambda e: self.edit(self.path))
 		self.text.bind('<Control-r>', lambda e: self.read(self.path))
-		self.text.bind('<Control-s>', lambda e: self.save(self.path))
+		self.text.bind('<Control-s>', lambda e: self.savevisual())
 		# self.text.bind('<Control-w>', lambda e: self.winfo_toplevel().close())
 		self.text.bind('<Alt-r>', lambda e: self.read_only())
 		self.text.bind('<Control-p>', lambda e: (self.winfo_toplevel().clipboard_clear(),self.winfo_toplevel().clipboard_append(self.path),self.winfo_toplevel().update()))
@@ -66,7 +66,7 @@ class TextBox(Frame):
 		subformat.add_command(label="Tab")
 		menubar.add_separator()
 		self.imgver = Zeta.Image.Icon.Load('historybw', 'bw').image
-		menubar.add_command(label="Version", image=self.imgver, compound='left', command=lambda: Zeta.System.OS.edit(self.scraps))
+		menubar.add_command(label="Version", image=self.imgver, compound='left', command=self.showversion)
 		menubar.add_checkbutton(label="Wordwrap", command=self.wrap, variable=self.wordwrap, onvalue='word', offvalue='none')
 		menubar.add_checkbutton(label="Read-only", command=self.read_only, variable=self.readonly, onvalue='disabled', offvalue='normal')
 		self.text.bind("<Button-3>", lambda event: menubar.post(event.x_root, event.y_root))
@@ -103,6 +103,7 @@ class TextBox(Frame):
 
 	def edit(self, path):
 		if path!='': Zeta.System.OS.edit(path)
+		Workspace.toggle_sidebar()
 
 	def wrap(self):
 		if self.text['state']=='normal': return
@@ -127,6 +128,15 @@ class TextBox(Frame):
 		f.close()
 		self.version()
 
+	def savevisual(self):
+		self.save(self.path)
+		window = self.winfo_toplevel()
+		oldtitle = window.decoration.title()
+		window.decoration.title(f"{oldtitle}▐")
+		# window.decoration.title(f"{oldtitle}¦")
+		# time.sleep(0.5)
+		# window.decoration.title(oldtitle)
+
 	def version(self):
 		if self.path=='': return
 		if self.path.startswith(Zeta.System.Path.Scraps.path): return
@@ -145,6 +155,10 @@ class TextBox(Frame):
 			current = self.text.get('1.0', 'end-1c')
 			if last!=current: self.save(f"{scraps}/{str(round(time.time()))}.txt")
 		# os.startfile(scraps)
+
+	def showversion(self):
+		Zeta.System.OS.edit(self.scraps)
+		Workspace.toggle_sidebar()
 
 
 class TextPanel(Window):

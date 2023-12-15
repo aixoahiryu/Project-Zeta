@@ -1,0 +1,16 @@
+Scan|<Home>/[ Scan ]
+People|<Home>/[ People ]
+Mask|<Home>/[ Mask ]
+---
+Scraps|<Scraps>/profile
+-------------
+<X>\Void\[ Workspace ]\Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F
