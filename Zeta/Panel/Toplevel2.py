@@ -64,6 +64,7 @@ class Toplevel2(Toplevel):
 	def transcend(self):
 		self.orphan()
 		self.bind('<Expose>', lambda e: self.overrideredirect(True))
+		self.attributes('-topmost', False)
 		self.transcended = True
 
 	# def theme(self, bg='#000000', fg='#ffffff'):

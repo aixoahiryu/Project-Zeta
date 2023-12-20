@@ -50,11 +50,12 @@ class Smoke():
 	foregroundw = '#d8d8d8'
 
 class Nier():
-	background = '#D7D1B9'
-	foreground = '#4D4940'
-	tint = '#B4AF9B'
+	background = '#C6C1AA'
+	foreground = '#2D2A28'
+	tint = '#B5AD9A'
 	orange = '#B55B47'
 	blue = '#3C9794'
+	red = '#AB3A4B'
 
 class Ink():
 	background = '#B2CBC2'

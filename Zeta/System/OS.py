@@ -20,6 +20,7 @@ def open(fullpath):
 	if os.path.isfile(fullpath): path = os.path.split(fullpath)[0]
 	else: path = fullpath
 	os.startfile(path)
+	Workspace.toggle_sidebar()
 	#subprocess.Popen(r'explorer /select,"C:\xampp"')
 
 def edit(fullpath):

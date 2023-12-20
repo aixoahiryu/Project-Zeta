@@ -153,6 +153,7 @@ class FileBox(Frame):
 		self.tree.bind('<Double-Button-1>', self.change_dir)
 		self.tree.bind('<Return>', self.change_dir)
 		self.tree.bind('<ButtonRelease-1>', self.selectItem)
+		self.winfo_toplevel().tree = self.tree
 
 
 		#menubar = Menu(master, tearoff=0, background='#ffffff', foreground='#000000', activebackground='#000000', activeforeground='#ffffff')

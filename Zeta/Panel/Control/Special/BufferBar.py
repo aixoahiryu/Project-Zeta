@@ -36,19 +36,19 @@ class BufferBar(Toplevel):
 		Button2(self.frame1, text='Link', side='left', fill='y', geometry='top', buffer=['Main', 'Repository', '|', 'Blackmarket'])
 		Label(self.frame1, text=' ]').pack(side='left', fill='y')
 		Button2(self.frame1, text='[ Note ]', side='left', fill='y', geometry='top', buffer=['Internal', '|', 'Shared', 'People'])
-		Button2(self.frame1, text='[ Reference ]', side='left', fill='y', geometry='top', buffer=['Documentation', 'Research', 'Case study', '|', 'Book'])
-		Button2(self.frame1, text='[ Network ]', side='left', fill='y', geometry='top', buffer=['Articles', 'Forums', 'Q & A', 'Tutorial', '|', 'Anonymous'])
+		Button2(self.frame1, text='[ Reference ]', side='left', fill='y', geometry='top', buffer=['Documentation', 'Research', 'Case study', '|', 'Book', 'Documentary'])
+		Button2(self.frame1, text='[ Network ]', side='left', fill='y', geometry='top', buffer=['Articles', 'Forums', 'Q & A', 'Tutorial', '|', 'Anonymous', 'Opposition'])
 		Button2(self.frame1, text=' Folder', image=self.imgfolder, compound='left', side='left', fill='y', geometry='top', exclude=[])
 		Button2(self.frame1, text=' File', image=self.imgtext, compound='left', side='left', fill='y', geometry='top', exclude=[])
 
 		Button2(self.frame2, image=self.imgmenu, command= lambda: Workspace.hide(Workspace.active), side='right', fill='y', geometry='top')
-		btnairlock = Button2(self.frame2, text='Ω[ Airlock ]', side='right', fill='y', geometry='top')
-		btnscraps = Button2(self.frame2, text='Σ[ Scraps ]', side='right', fill='y', geometry='top')
+		btnairlock = Button2(self.frame2, text='Ω[ Airlock ]', side='right', fill='y', geometry='top', buffer=['Δ[ Recycle ]', 'Δ[ Unused ]'])
+		btnscraps = Button2(self.frame2, text='Σ[ Scraps ]', side='right', fill='y', geometry='top', buffer=['Time', 'Tag'])
 		Label(self.frame2, text=' ]').pack(side='right', fill='y')
 		btnraw = Button2(self.frame2, text='Raw', side='right', fill='y', geometry='top', buffer=['History', 'Resource', 'Download'])
 		btnfile = Button2(self.frame2, text='File', side='right', fill='y', geometry='top', buffer=['Scraps', 'Sandbox'])
 		Label(self.frame2, text='Δ[ ').pack(side='right', fill='y')
-		Button2(self.frame2, text=' Journal', image=self.imghdd, compound='left', side='right', fill='y', geometry='top')
+		Button2(self.frame2, text=' Journal', image=self.imghdd, compound='left', side='right', fill='y', geometry='top', buffer=['# META', '[ List ]'])
 		Button2(self.frame2, image=self.imgplay, side='right', fill='y', geometry='top', buffer=['Mindset', 'Ambient'])
 		Button2(self.frame2, image=self.imgtext, side='right', fill='y', geometry='top', buffer=['Learn', 'Alternative'])
 		Button2(self.frame2, image=self.imgex, side='right', fill='y', geometry='top', buffer=['Project', 'Sticky'])
@@ -91,7 +91,7 @@ class BufferBar(Toplevel):
 		Button2(self.frame2, image=self.imgex, side='right', fill='y', geometry='top', buffer=['Project', 'Sticky'], path=path+'/# Framework/√ Experiment')
 
 		self.theme(self, bg='#000000', fg='#ffffff')
-		Workspace.toggle_bind(leftmenu, self.folder)
+		Zeta.System.WM.toggle_bind(leftmenu, self.folder)
 		# btnscraps['foreground'] = Zeta.Color.Neon('green').hex
 		# btnfile['foreground'] = Zeta.Color.Neon('yellow').hex
 		# btnraw['foreground'] = Zeta.Color.Neon('yellow').hex

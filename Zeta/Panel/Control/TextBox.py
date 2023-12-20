@@ -48,6 +48,7 @@ class TextBox(Frame):
 		self.text.bind('<b>', lambda e: self.os('browser'))
 		self.text.bind('<e>', lambda e: self.os('editor'))
 		self.text.bind('<s>', lambda e: self.os('sidebar'))
+		self.winfo_toplevel().text = self.text
 
 		menubar = Menu(self, tearoff=0)
 		menubar.add_command(label="Launch", command=self.os)
