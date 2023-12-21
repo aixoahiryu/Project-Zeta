@@ -1,9 +1,13 @@
 import Zeta
 from Zeta.Panel import *
 
-def launch(window, geometry='', transient='', *args, **kargs):
-	if geometry!='': window.geometry(geometry)
-	if transient!='': window.transient(transient)
+def launch(window, geometry='', transient='', parent='', anchor='widget', *args, **kargs):
+	if geometry!='':
+		if geometry in ['left', 'right', 'top', 'bottom']:
+			window.update()
+			Zeta.Utility.Geometry.calc(parent, window, geometry, anchor)
+		else: window.geometry(geometry)
+	if transient!='': window.transient(transient.winfo_toplevel())
 	window.attributes('-alpha', Zeta.Setting.opacityneon)
 	window.attributes('-topmost', True)
 	window.show()

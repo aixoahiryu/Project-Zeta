@@ -130,10 +130,11 @@ class Button2(Button):
 
 			Zeta.System.WM.hover_bind(btn, btn.menu, geometry=btn.geometry, anchor=btn)
 			Zeta.System.WM.toggle_bind(btn, btn.menu, geometry=btn.geometry, anchor=btn)#, button=button)
-			# btn.bind('<Button-3>', lambda e: self.sublaunch(btn, Zeta.Utility.Launch.Explorer(path=btn.path, color=self.menucolor)) )
+			### btn.bind('<Button-3>', lambda e: self.sublaunch(btn, Zeta.Utility.Launch.Explorer(path=btn.path, color=self.menucolor)) )
 			btn.bind('<space>', lambda e: self.sublaunch(btn, Zeta.Panel.Control.FileBox.FilePanel(title=os.path.split(btn.path)[1], home=btn.path, color2=self.menucolor)) )
-			btn.bind('<Double-1>', lambda e: Zeta.System.OS.open(btn.path))
-			btn.bind('<Button-3>', lambda e: Zeta.Utility.Dialog.newfile(btn.path, btn, btn.geometry))
+			# btn.bind('<Double-1>', lambda e: Zeta.System.OS.open(btn.path))
+			# btn.bind('<Button-3>', lambda e: Zeta.Utility.Dialog.newfile(btn, btn.path, btn.geometry))
+			btn.bind('<Button-3>', lambda e: Zeta.Utility.Menu.directory(btn, path=btn.path, geometry=btn.geometry, color=self.menucolor, post=[e.x_root, e.y_root]))
 
 		if btn.buffer!=[]:
 			for i in btn.buffer:

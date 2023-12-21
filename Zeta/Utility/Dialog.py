@@ -10,16 +10,7 @@ def input(msg='', printable=''):
 	# name = ''.join(filter(lambda x: x in printable, name))
 	return name
 
-def newFileOrFolder(path, newFileName, dialog):
-	if os.path.isdir(path): fullpath2 = path
-	if os.path.isfile(path): fullpath2 = os.path.split(path)[0]
-	if len(newFileName.get().split('.')) != 1:
-		open(os.path.join(fullpath2, newFileName.get()), 'w').close()
-	else:
-		os.makedirs(os.path.join(fullpath2, newFileName.get()))
-	dialog.destroy()
-
-def newfile(path='', parent='', geometry='right'):
+def newfile(parent, path='', geometry='right'):
 	parent = parent.winfo_toplevel()
 	newFileName = StringVar(parent, "", 'new_name')
 	newFileName.set('')
@@ -50,6 +41,16 @@ def newfile(path='', parent='', geometry='right'):
 	Button(btnframe, text=" Ω ", command=lambda: newFileName.set(r'Ω[ '+newFileName.get()+r' ]')).pack(side=LEFT)
 	Button(btnframe, text="Create", command=lambda: newFileOrFolder(path, newFileName, dialog)).pack(side=LEFT)
 	dialog.theme(target=dialog.frame, bg=Zeta.Color.Neon(parent.color2).hue, fg=Zeta.Color.Neon(parent.color2).hex)
+	dialog.update()
 	Zeta.System.WM.geocalc(dialog, parent, geometry, parent)
 	dialog.show()
 	return dialog
+
+def newFileOrFolder(path, newFileName, dialog):
+	if os.path.isdir(path): fullpath2 = path
+	if os.path.isfile(path): fullpath2 = os.path.split(path)[0]
+	if len(newFileName.get().split('.')) != 1:
+		open(os.path.join(fullpath2, newFileName.get()), 'w').close()
+	else:
+		os.makedirs(os.path.join(fullpath2, newFileName.get()))
+	dialog.destroy()

@@ -8,6 +8,11 @@ Windows = True if platform.system() == 'Windows' else False
 Linux = True if platform.system() == 'Linux' else False
 Mac = True if platform.system() == 'Darwin' else False
 
+# @Zeta.runtime
+def finish():
+	# if hasattr(__builtins__, 'Workspace'): Workspace.toggle_sidebar()
+	Workspace.toggle_sidebar()
+
 def launch(fullpath, program='', custom=''):
 	tools = {'browser': Zeta.System.Path.Browser.main, 'lite': Zeta.System.Path.Browser.lite}
 	tools['editor'] = Zeta.System.Path.Editor.main
@@ -20,12 +25,13 @@ def open(fullpath):
 	if os.path.isfile(fullpath): path = os.path.split(fullpath)[0]
 	else: path = fullpath
 	os.startfile(path)
-	Workspace.toggle_sidebar()
 	#subprocess.Popen(r'explorer /select,"C:\xampp"')
+	finish()
 
 def edit(fullpath):
 	subprocess.Popen([Zeta.System.Path.Editor.main, fullpath], start_new_session=True)
 	#os.startfile(r'C:\Program Files\Sublime Text 3\sublime_text.exe '+fullpath)
+	finish()
 
 def terminal(fullpath):
 	if os.path.isfile(fullpath): path = os.path.split(fullpath)[0]

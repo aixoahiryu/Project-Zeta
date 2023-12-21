@@ -30,6 +30,7 @@ class Browser():
 
 class Scraps():
 	path = r'D:\Scraps'
+	resource = r'D:\Resource'
 
 class Resource():
 	mp3 = r'D:\MP3'

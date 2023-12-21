@@ -20,8 +20,8 @@ class Lounge(Window):
 		self.imgmusic=Zeta.Image.Icon.Load(icon='volumew', icontype='bw').image
 		# self.InitWindow()
 
-		Button2(self.frame, text=' Video', image=self.imgplay, compound='left', side='right', fill='y', path='<Scraps>/shortcut/E/video', buffer=['MV', 'Temp', '|', 'Backup'], menucolor='green', textcolor='white', geometry='top')
-		Button2(self.frame, text=' Audio', image=self.imgmusic, compound='left', side='right', fill='y', path='<Scraps>/shortcut/E/audio', buffer=['MP3'], menucolor='green', textcolor='white', geometry='top')
+		Button2(self.frame, text=' Video', image=self.imgplay, compound='left', side='right', fill='y', path='<Resource>/E/video', buffer=['MV', 'Temp', '|', 'Backup'], menucolor='green', textcolor='white', geometry='top')
+		Button2(self.frame, text=' Audio', image=self.imgmusic, compound='left', side='right', fill='y', path='<Resource>/E/audio', buffer=['MP3'], menucolor='green', textcolor='white', geometry='top')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='right', fill='y')
 		Button2(self.frame, text=' Explore', image=self.imghdd, compound='left', side='right', fill='y', path='<Scraps>/shortcut/E/explore', listdir=True, menucolor='green', textcolor='white', geometry='top')
 		Frame(self.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='right', fill='y')

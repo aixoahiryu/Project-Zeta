@@ -46,10 +46,10 @@ class Search(Window):
 		frame2.grid_rowconfigure(3, weight=1)
 		self.searchbox2 = Entry(frame2)
 		self.searchbox2.grid(sticky='NSEW', row=0)
-		self.searchbox2.bind('<Return>', self.search)
+		self.searchbox2.bind('<Return>', lambda e: self.search())
 		self.searchbox3 = Entry(frame2)
 		self.searchbox3.grid(sticky='NSEW', row=1)
-		self.searchbox3.bind('<Return>', self.search)
+		self.searchbox3.bind('<Return>', lambda e: self.search())
 
 		engineframe = Frame(frame2)
 		engineframe.grid(sticky='NSEW', row=2)
@@ -57,10 +57,10 @@ class Search(Window):
 		self.enginebox.configure(values=['Google','Yandex','Bing'])
 		self.enginebox.set('Google')
 		self.enginebox.pack(side='left', fill='x')
-		self.enginebox2 = ttk.Combobox(engineframe, state="readonly")
-		self.enginebox2.configure(values=['Browser','Lite','[Crawler]'])
-		self.enginebox2.set('Lite')
-		self.enginebox2.pack(side='left', fill='x')
+		self.browserbox = ttk.Combobox(engineframe, state="readonly")
+		self.browserbox.configure(values=['Browser','Lite','[Crawler]'])
+		self.browserbox.set('Lite')
+		self.browserbox.pack(side='left', fill='x')
 
 		fileframe = Frame(frame2, bg=colorbg)
 		fileframe.grid(sticky='NSEW', row=3)
@@ -76,7 +76,10 @@ class Search(Window):
 
 		self.searchbox = Entry(self.frame)
 		self.searchbox.grid(sticky='NSEW', column=1, row=0)
-		self.searchbox.bind('<Return>', self.search)
+		self.searchbox.bind('<Return>', lambda e: self.search())
+		self.searchbox.bind('<Shift-Return>', lambda e: self.search(query=self.searchbox.get(), browser='Lite'))
+		self.searchbox.bind('<Control-Return>', lambda e: self.search(engine='Google'))
+		self.searchbox.bind('<Alt-Return>', lambda e: self.search(browser='Browser'))
 
 		filelist = [x for x in os.listdir(cwd) if not os.path.isdir(os.path.join(cwd, x))]
 		filelist = os_sorted(filelist)
@@ -88,25 +91,30 @@ class Search(Window):
 		Toolbox().transient(self)
 
 		self.theme(self.frame, bg='#000000', fg='#ffffff')
-		self.bind('<Expose>', lambda e: (self.searchbox.focus(), self.searchbox.selection_range(0, END)))
+		self.bind('<Expose>', lambda e: self.exposed())
+		self.searchbox.bind('<Enter>', lambda e: self.exposed())
+		self.searchbox2.bind('<Enter>', lambda e: self.searchbox2.focus())
+		self.searchbox3.bind('<Enter>', lambda e: self.searchbox3.focus())
 
 
 	def engine(self, id):
 		print(id)
 		search()
 
-	def search(self, *event):
-		engine = {'Google': 'https://www.google.com/search?q=%s&num=100&nfpr=1&hl=en-US&gl=US&filter=0&safe=off',\
+	def search(self, query='', engine='', browser='', *event):
+		if query=='': query=self.searchbox2.get()+' '+self.searchbox.get()+' '+self.searchbox3.get()
+		if engine=='': engine=self.enginebox.get()
+		if browser=='': browser=self.browserbox.get()
+		engineset = {'Google': 'https://www.google.com/search?q=%s&num=100&nfpr=1&hl=en-US&gl=US&filter=0&safe=off',\
 		'Yandex': 'https://yandex.com/search/?text=%s',\
 		'Bing': 'https://www.bing.com/search?q=%s',\
 		}
-		browser = {'Browser': Zeta.System.Path.Browser().main, 'Lite': Zeta.System.Path.Browser().lite}
-		searchstr = self.searchbox2.get()+' '+self.searchbox.get()+' '+self.searchbox3.get()
-		subprocess.Popen([browser[self.enginebox2.get()], engine[self.enginebox.get()] % searchstr], start_new_session=True)
+		browserset = {'Browser': Zeta.System.Path.Browser().main, 'Lite': Zeta.System.Path.Browser().lite}
+		subprocess.Popen([browserset[browser], engineset[engine] % query], start_new_session=True)
 		# webbrowser.open(engine[self.enginebox.get()] % searchstr, new=2, autoraise=True)
 		# webbrowser.open(r'https://www.google.com/search?q='+self.searchbox.get()+' '+self.searchbox2.get()+' '+self.searchbox3.get()+r'&num=100&nfpr=1', new=2, autoraise=True)
 
-		if Zeta.Setting.module['raw']: Zeta.Raw.Network.Search(f'{self.enginebox2.get()} {self.enginebox.get()}: {searchstr}')
+		if Zeta.Setting.module['raw']: Zeta.Raw.Network.Search(f'{engine} {browser}: {query}')
 
 	def change_file(self, *event):
 		self.list2.delete(0, END)
@@ -128,5 +136,9 @@ class Search(Window):
 		picked = self.list2.get(self.list2.curselection()[0])
 		self.searchbox3.delete(0, END)
 		self.searchbox3.insert(0, picked)
+
+	def exposed(self):
+		self.searchbox.focus()
+		self.searchbox.selection_range(0, END)
 
 # https://developers.google.com/custom-search/docs/xml_results
