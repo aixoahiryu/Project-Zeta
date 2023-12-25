@@ -1,3 +1,4 @@
+/|/
 C|C:\
 D|D:\
 ---
@@ -7,7 +8,7 @@ Scraps|<Scraps>
 Data|D:\Data
 Core|<Downstream>
 -------------
-<X>\Void\[ Workspace ]\Commit
+<X>/Void/[ Workspace ]/Commit
 [ Main ]
 [ Vector ]
 ---

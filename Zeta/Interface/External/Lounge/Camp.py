@@ -164,6 +164,7 @@ class Camp(Window):
 		Button(x.frame, text=' Twilight Zone, Harvester, Phantasmagoria, Darkseed', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text=' The evil within', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text=' Valentine\'s Rain', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
+		Button(x.frame, text=' Chrono Trigger', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text=' Katana 0, The final station, Black future \'88', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Frame(x.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		Button(x.frame, text=' Erin Hunter, Kyell Gold, Rick Griffin', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')

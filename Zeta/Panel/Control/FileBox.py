@@ -105,7 +105,7 @@ class FileBox(Frame):
 		# data = data.replace(r'<Downstream>', Zeta.System.Path.Core.downstream2)
 		self.metadata = data.split('-------------')
 		for i in filter(None, self.metadata[0].split('\n')):
-			if i == '---': Label(frame3_1, text='|').pack(side='left')
+			if i == '---': Label(frame3_1, text='¦').pack(side='left')
 			else:
 				btntemp = Button(frame3_1, text=i.split('|')[0])
 				btntemp.pack(side='left')

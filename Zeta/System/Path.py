@@ -11,10 +11,10 @@ class Core():
 
 	# Sidebar = r'D:\ZL-Core\Toolbar\_\[ Sidebar ]'
 	# Planner = r'D:\MEGA\ZL-Core\Commit\_'
-	Void = X+r'\Void\[ Workspace ]\╬'
-	Planner = X+r'\Null\Planner'
-	Sidebar = downstream2+r'\X\Void\# META\Sidebar'
-	Commit = X+r'\Void\[ Workspace ]\Commit'
+	Void = X+r'/Void/[ Workspace ]/╬'
+	Planner = X+r'/Null/Planner'
+	Sidebar = downstream2+r'/X/Void/# META/Sidebar'
+	Commit = X+r'/Void/[ Workspace ]/Commit'
 
 class Execute():
 	python = 'py -B'

@@ -18,7 +18,7 @@ colorbg = "#000000" if darkmode else "#ffffff"
 colorbg2 = "#253B34" if darkmode else "#6effbe"
 colorfg = "#ffffff" if darkmode else "#000000"
 
-Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'Monolith': {'root': ''}, 'Command': {'root': ''}, 'Launch': {'root': ''}}
+Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'Monolith': {'root': ''}, 'Command': {'root': ''}, 'Launch': {'root': ''}, 'Whiteboard': {'root': ''}}
 __builtins__.Workspace = Zeta.System.WM.Workspace(Panel)
 Workspace.active = ''
 
@@ -46,8 +46,6 @@ sidebarext.geometry(f"1x{height}+0+0")
 sidebarext.overrideredirect(1)
 sidebarext.configure(bg=colorbg)
 Panel['System']['sidebarext'] = sidebarext
-
-sidebar2 = Internal.Whiteboard()
 
 taskbar = Internal.Taskbar()
 Panel['System']['taskbar'] = taskbar
@@ -103,6 +101,7 @@ def menu_clear():
 Panel['Launch']['root'] = Internal.Launch()
 Panel['Monolith']['root'] = Internal.Monolith()
 Panel['Command']['root'] = Internal.Command()
+Panel['Whiteboard']['root'] = Internal.Whiteboard()
 
 #-------------------------------------------------------------------------------
 
@@ -113,13 +112,12 @@ if tooltip:
 	sidebar.bind("<Button-1>", lambda e: tooltip_hide())
 
 sidebar.bind("<Button-1>", toggle_sidebar, add="+")
-Workspace.toggle_bind(sidebarext, sidebar2)
-# Zeta.System.WM.toggle_bind(sidebarext, sidebar2)
-# Zeta.System.WM.hover_bind(sidebarext, sidebar2, stay=True)
+sidebar.bind("<Button-3>", lambda e: Workspace.toggle_sidebar('Whiteboard'), add="+")
+# Workspace.toggle_bind(sidebarext, sidebar2)
+# sidebarext.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active), add="+")
+
 
 #taskbar.bind("<Enter>", lambda e: root.hide())
-# taskbar.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active))
-sidebarext.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active), add="+")
 
 
 

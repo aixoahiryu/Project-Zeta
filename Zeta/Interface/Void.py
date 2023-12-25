@@ -28,6 +28,7 @@ colorfg = "#ffffff" if darkmode else "#000000"
 
 Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'File': {'root': ''}, 'Network': {'root': ''}, 'Lounge': {'root': ''}}
 __builtins__.Workspace = Zeta.System.WM.Workspace(Panel)
+__builtins__.WorkspaceColor = 'white'
 Workspace.active = ''
 
 Workspace.geometry = {'main': '', 'sidebar': ''}
@@ -49,14 +50,14 @@ sidebarext = External.Sidebar()
 Panel['System']['sidebarext'] = sidebarext
 
 # sidebar2 = Toplevel(sidebar)
-sidebar2 = Window(color2='white', mode='border')
+sidebar2 = Window(color2=WorkspaceColor, mode='border')
 sidebar2.title('===[ Sidebar: File ]===')
 sidebar2.attributes('-topmost', True)
 sidebar2.attributes('-alpha', Zeta.Setting.opacity)
 height = Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25
 sidebar2.geometry(f"333x{height}-1+25")
 sidebar2.overrideredirect(1)
-File2 = FileBox(sidebar2.frame, home=Zeta.System.Path.Core.Sidebar, color2='white', panelgeometry='left')
+File2 = FileBox(sidebar2.frame, home=Zeta.System.Path.Core.Sidebar, color2=WorkspaceColor, panelgeometry='left')
 
 taskbar = External.Taskbar()
 Panel['System']['taskbar'] = taskbar
@@ -121,7 +122,7 @@ def switch(name=''):
 
 def addworkspace():
 	name = askstring('Name', 'Workspace name:')
-	printable = '#[].-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	printable = '#[].-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/'
 	name = ''.join(filter(lambda x: x in printable, name))
 	Panel[name] = {'root': External.Sidebar()}
 	wmenu.add_radiobutton(label=name, variable=selected_workspace, value=name, command=switch)

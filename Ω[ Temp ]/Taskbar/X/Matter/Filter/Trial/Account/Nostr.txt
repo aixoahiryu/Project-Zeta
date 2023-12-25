@@ -1,0 +1,2 @@
+https://github.com/aljazceru/awesome-nostr
+https://code.pobblelabs.org/fossil/nostr_relay/index
