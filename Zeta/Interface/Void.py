@@ -104,10 +104,9 @@ def toggle_sidebar(*event):
 def tooltip_show(x, y):
 	popup.show() if Workspace.hidden else print('hidden')
 	if (y<=50 and x==0): (popupmsg.configure(text='Network'),popup.geometry('+10+10'))
-	elif (y>50 and y<100): (popupmsg.configure(text='File'),popup.geometry('+10+50'))
+	# elif (y>50 and y<100): (popupmsg.configure(text='File'),popup.geometry('+10+50'))
 	#elif x>=1: (popupmsg.configure(text='F'),popup.geometry('+10+10'))
 	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): (popupmsg.configure(text='Lounge'),popup.geometry('+10-40'))
-	# else: (popupmsg.configure(text='File'),popup.hide())
 	else: (popupmsg.configure(text=selected_workspace.get()),popup.geometry('+10+10'))
 
 def tooltip_hide():
@@ -130,6 +129,8 @@ def addworkspace():
 	path = Zeta.Utility.Format.Path('<Scraps>/workspace/void/'+name)
 	if not os.path.exists(path): os.makedirs(path)
 	wpanel = Zeta.Utility.Launch.Explorer(color='green', mode='border', path=path, geometry=sidebar2.geometry(), panelgeometry='left')
+	Panel[name]['root'].path = path
+	Panel[name]['root'].bind('<Button-3>', lambda e: Zeta.Utility.Launch.Explorer(color='green', path=e.widget.path, geometry=Workspace.geometry['sidebar'], transient=e.widget, panelgeometry='right'))
 	Workspace.toggle_bind(Panel[name]['root'], wpanel)
 	switch(name)
 

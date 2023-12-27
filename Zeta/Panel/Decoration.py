@@ -1,5 +1,6 @@
 import Zeta
 from tkinter import *
+from Zeta.Panel import *
 
 class Basic(Frame):
 	def __init__(self, master, title='Title', color=7, color2='', safemode=False):
@@ -25,16 +26,17 @@ class Basic(Frame):
 		self.geometry = Workspace.geometry['main'] if hasattr(__builtins__, 'Workspace') else f"{Zeta.System.Size.Screen.width}x{Zeta.System.Size.Screen.height}+0+0"
 		self.maximized = False
 		self.safemode = safemode
-		Button(btnframe, text=u'Ζ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().transcend).pack(side='left')
-		Button(btnframe, text=u'Α', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=lambda: self.winfo_toplevel().adopt(Workspace.panel[Workspace.active]['root'])).pack(side='left')
-		Button(btnframe, text=u'Σ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
-		Button(btnframe, text=u'Ω', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
-		Button(btnframe, text=u'¦', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide).pack(side='left')
-		Button(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='green').hex, background=self.hue, command=self.winfo_toplevel().hide).pack(side='left')
-		Button(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='yellow').hex, background=self.hue, command=self.maximize).pack(side='left')
-		Button(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='red').hex, background=self.hue, command=self.close).pack(side='left')
+		Button2(btnframe, text=u'Ζ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().transcend, side='left', fill='y')
+		Button2(btnframe, text=u'Α', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=lambda: self.winfo_toplevel().adopt(Workspace.panel[Workspace.active]['root']), side='left', fill='y')
+		Button2(btnframe, text=u'Σ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
+		Button2(btnframe, text=u'Ω', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
+		Button2(btnframe, text=u'¦', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
+		Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='green').hex, background=self.hue, command=self.winfo_toplevel().hide, side='left', fill='y')
+		btnmax = Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='yellow').hex, background=self.hue, command=self.maximize, side='left', fill='y')
+		Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='red').hex, background=self.hue, command=self.close, side='left', fill='y')
 
 		self.winfo_toplevel().bind('<Control-w>', lambda e: self.winfo_toplevel().close())
+		btnmax.bind('<Button-3>', lambda e: self.winfo_toplevel().geometry(Workspace.geometry['main']))
 		try:
 			self.winfo_toplevel().bind_drag(top)
 			self.winfo_toplevel().bind_drag(self.msg)

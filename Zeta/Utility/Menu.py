@@ -16,7 +16,7 @@ def directory(anchor, path='', geometry='right', color='white', post=[]):
 	subexecute.add_command(label="Python", command=lambda: Zeta.System.OS.launch(path, 'python'))
 	menubar.add_separator()
 	menubar.add_command(label="Terminal", image=imgtermbw, compound='left', command=lambda: Zeta.System.OS.terminal(path))
-	menubar.add_command(label="Detach", image=imgdetachbw, compound='left', command=lambda: Zeta.Utility.Launch.Explorer(path=path, color=color, transient=anchor, geometry=geometry, parent=anchor, anchor=anchor))
+	menubar.add_command(label="Detach", image=imgdetachbw, compound='left', command=lambda: Zeta.Utility.Launch.Explorer(path=path, color=color, transient=anchor.menu if hasattr(anchor, 'menu') else anchor, geometry=geometry, parent=anchor, anchor=anchor))
 	menubar.add_separator()
 	return mpost(menubar, anchor, post)
 
