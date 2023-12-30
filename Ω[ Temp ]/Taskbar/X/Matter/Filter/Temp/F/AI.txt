@@ -11,3 +11,5 @@ detailed background, space, anthro, on back, ((legs up)), (scales), ((spread but
 	https://old.reddit.com/r/StableDiffusion/comments/11o9j45/noob_question_what_is_addnet/
 	https://huggingface.co/spaces/andzhk/PNGInfo
 
+easyfluff for initial image then bb95 for the upscaler
+/trash/62191306   /trash/62191485
