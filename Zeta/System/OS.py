@@ -22,6 +22,7 @@ def launch(fullpath, program='', custom=''):
 	else: subprocess.Popen([tools[program]+' '+custom, fullpath], start_new_session=True)
 
 def open(fullpath):
+	fullpath = Zeta.Utility.Format.Path(fullpath)
 	if os.path.isfile(fullpath): path = os.path.split(fullpath)[0]
 	else: path = fullpath
 	os.startfile(path)
@@ -29,11 +30,13 @@ def open(fullpath):
 	finish()
 
 def edit(fullpath):
+	fullpath = Zeta.Utility.Format.Path(fullpath)
 	subprocess.Popen([Zeta.System.Path.Editor.main, fullpath], start_new_session=True)
 	#os.startfile(r'C:\Program Files\Sublime Text 3\sublime_text.exe '+fullpath)
 	finish()
 
 def terminal(fullpath):
+	fullpath = Zeta.Utility.Format.Path(fullpath)
 	if os.path.isfile(fullpath): path = os.path.split(fullpath)[0]
 	else: path = fullpath
 	

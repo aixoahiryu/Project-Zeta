@@ -162,8 +162,10 @@ Panel['Lounge']['root'] = External.Lounge()
 
 Panel['Console'] = {'root': External.Sidebar()}
 Panel['Test'] = {'root': External.Sidebar()}
+Panel['Downstream'] = {'root': External.Sidebar()}
 wmenu.add_radiobutton(label="Console", variable=selected_workspace, value="Console", command=switch)
 wmenu.add_radiobutton(label="Test", variable=selected_workspace, value="Test", command=switch)
+wmenu.add_radiobutton(label="Downstream", variable=selected_workspace, value="Downstream", command=switch)
 wmenu.add_separator()
 
 #-------------------------------------------------------------------------------

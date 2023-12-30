@@ -72,3 +72,8 @@ class Quantum():
 	green = '#59C323'
 	blue = '#04B3DD'
 	purple = '#664FA1'
+
+class Plastic():
+	foreground = '#ACACAC'
+	background = '#202124'
+	blue = '#85B7D4'

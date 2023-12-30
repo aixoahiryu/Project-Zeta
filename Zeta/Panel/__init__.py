@@ -6,6 +6,7 @@ from tkinter import Button
 from .Button2 import Button2
 from tkinter import Label
 from tkinter import Frame
+from .Frame2 import Frame2
 from tkinter import Message
 from tkinter import Menu
 from tkinter.ttk import Notebook
