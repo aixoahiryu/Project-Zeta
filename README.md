@@ -26,3 +26,8 @@
 # Matter workspace
 1. Main
 ![Main desktop](https://i.imgur.com/yIeyFIV.png)
+
+
+# MISC.
+1. Theming
+![Window color](https://i.imgur.com/SiEIc5b.png)
