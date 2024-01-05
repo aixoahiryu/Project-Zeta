@@ -33,7 +33,9 @@ class Toplevel2(Toplevel):
 		self.event_generate("<<hide>>", when="tail")
 
 	def show(self, geometry=''):
-		if self.tile!=[]: Zeta.System.WM.geocalc(self.tile[0], self.tile[1], self.tile[2], self.tile[3])
+		if self.tile!=[]:
+			if isinstance(self.tile, Toplevel): self.geometry(self.tile.geometry())
+			else: Zeta.System.WM.geocalc(self.tile[0], self.tile[1], self.tile[2], self.tile[3])
 		if geometry!='': self.geometry(geometry)
 
 		self.deiconify()

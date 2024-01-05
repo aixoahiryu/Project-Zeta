@@ -31,11 +31,12 @@ class Basic(Frame):
 		Button2(btnframe, text=u'Σ', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
 		Button2(btnframe, text=u'Ω', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
 		Button2(btnframe, text=u'¦', relief='flat', foreground=self.fgcolor, background=self.hue, font=("Tahoma", 8, "normal"), command=self.winfo_toplevel().hide, side='left', fill='y')
-		Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='green').hex, background=self.hue, command=self.winfo_toplevel().hide, side='left', fill='y')
+		btnmin = Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='green').hex, background=self.hue, command=self.winfo_toplevel().hide, side='left', fill='y')
 		btnmax = Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='yellow').hex, background=self.hue, command=self.maximize, side='left', fill='y')
 		Button2(btnframe, text='■', relief='flat', foreground=self.neon if mono else Zeta.Color.Neon(color2='red').hex, background=self.hue, command=self.close, side='left', fill='y')
 
 		self.winfo_toplevel().bind('<Control-w>', lambda e: self.winfo_toplevel().close())
+		btnmin.bind('<Button-3>', lambda e: self.winfo_toplevel().geometry(Workspace.geometry['sidebar']))
 		btnmax.bind('<Button-3>', lambda e: self.winfo_toplevel().geometry(Workspace.geometry['main']))
 		try:
 			self.winfo_toplevel().bind_drag(top)

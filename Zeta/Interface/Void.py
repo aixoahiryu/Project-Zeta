@@ -119,8 +119,8 @@ def switch(name=''):
 	if Workspace.hidden: Workspace.toggle_sidebar(name)
 	else: Workspace.switch(name)
 
-def addworkspace():
-	name = askstring('Name', 'Workspace name:')
+def addworkspace(name='', switchafter=True):
+	if name=='': name = askstring('Name', 'Workspace name:')
 	printable = '#[].-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/'
 	name = ''.join(filter(lambda x: x in printable, name))
 	Panel[name] = {'root': External.Sidebar()}
@@ -132,7 +132,7 @@ def addworkspace():
 	Panel[name]['root'].path = path
 	Panel[name]['root'].bind('<Button-3>', lambda e: Zeta.Utility.Launch.Explorer(color='green', path=e.widget.path, geometry=Workspace.geometry['sidebar'], transient=e.widget, panelgeometry='right'))
 	Workspace.toggle_bind(Panel[name]['root'], wpanel)
-	switch(name)
+	if switchafter: switch(name)
 
 wmenu = Menu(sidebar, tearoff=0)
 wmenu.add_command(label="[ New ]", command=addworkspace)
@@ -152,20 +152,19 @@ Workspace.controller = Controller()
 root = External.File()
 wallpaper.watch = root.File1
 Workspace.controller.chdir = root.File1.change_dir
-#root.option_add("*tearOff", False)
-#root.configure(background="#000000")
-#root.configure(highlightbackground="#000000")
-#root.configure(highlightcolor="white")
 Panel['File']['root'] = root
 Panel['Network']['root'] = External.Search()
 Panel['Lounge']['root'] = External.Lounge()
 
-Panel['Console'] = {'root': External.Sidebar()}
-Panel['Test'] = {'root': External.Sidebar()}
-Panel['Downstream'] = {'root': External.Sidebar()}
-wmenu.add_radiobutton(label="Console", variable=selected_workspace, value="Console", command=switch)
-wmenu.add_radiobutton(label="Test", variable=selected_workspace, value="Test", command=switch)
-wmenu.add_radiobutton(label="Downstream", variable=selected_workspace, value="Downstream", command=switch)
+# Panel['Console'] = {'root': External.Sidebar()}
+# Panel['Test'] = {'root': External.Sidebar()}
+# Panel['Downstream'] = {'root': External.Sidebar()}
+# wmenu.add_radiobutton(label="Console", variable=selected_workspace, value="Console", command=switch)
+# wmenu.add_radiobutton(label="Test", variable=selected_workspace, value="Test", command=switch)
+# wmenu.add_radiobutton(label="Downstream", variable=selected_workspace, value="Downstream", command=switch)
+addworkspace('Console')
+addworkspace('Test')
+addworkspace('Downstream')
 wmenu.add_separator()
 
 #-------------------------------------------------------------------------------
