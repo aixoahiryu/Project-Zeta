@@ -1,0 +1,12 @@
+| - + "" () &
+intitle:   site:   intext:   inurl:
+define:   related:site.com
+
+contains:pdf
+ext:   filetype:
+before:2015
+
+
+-shill -shopping -company
+-album -facts -job -shill -product -brand -music -social -ads -mainstream -media
+-tiktok -instagram
