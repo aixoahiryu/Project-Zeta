@@ -1,5 +1,5 @@
 import Zeta
-import External
+import Data
 from Zeta.Panel import *
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -26,7 +26,7 @@ colorbg = "#000000" if darkmode else "#ffffff"
 colorbg2 = "#253B34" if darkmode else "#6effbe"
 colorfg = "#ffffff" if darkmode else "#000000"
 
-Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'File': {'root': ''}, 'Network': {'root': ''}, 'Lounge': {'root': ''}}
+Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'Data': {'root': ''}, 'Extension': {'root': ''}, 'Sector': {'root': ''}}
 __builtins__.Workspace = Zeta.System.WM.Workspace(Panel)
 __builtins__.WorkspaceColor = 'white'
 Workspace.active = ''
@@ -39,14 +39,24 @@ sidebar = Tk()
 sidebar.attributes('-topmost', True)
 sidebar.attributes('-alpha', 0.1)
 sidebar.title('1px')
-height = Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar
-sidebar.geometry(f"1x{height}+0+0")
+width = Zeta.System.Size.Screen.width -1 -1
+sidebar.geometry(f"{width}x1+1+0")
 sidebar.overrideredirect(1)
 sidebar.configure(bg=colorbg)
 sidebar.update()
 sidebar.geometrylock = sidebar.geometry()
 
-sidebarext = External.Sidebar()
+sidebarbump = Toplevel()
+sidebarbump.attributes('-topmost', True)
+sidebarbump.attributes('-alpha', 0.1)
+width = Zeta.System.Size.Screen.width -1 -1
+sidebarbump.geometry(f"{width}x5+0+25")
+sidebarbump.overrideredirect(1)
+sidebarbump.configure(bg=colorbg)
+sidebarbump.show()
+sidebarbump.bind('<Enter>', lambda e: sidebar.lift())
+
+sidebarext = Data.Sidebar()
 Panel['System']['sidebarext'] = sidebarext
 
 # sidebar2 = Toplevel(sidebar)
@@ -59,17 +69,17 @@ sidebar2.geometry(f"333x{height}-1+25")
 sidebar2.overrideredirect(1)
 File2 = FileBox(sidebar2.frame, home=Zeta.System.Path.Core.Sidebar, color2=WorkspaceColor, panelgeometry='left')
 
-taskbar = External.Taskbar()
+taskbar = Data.Taskbar()
 Panel['System']['taskbar'] = taskbar
-# taskbar2 = External.Taskbar2()
+# taskbar2 = Data.Taskbar2()
 taskbar2 = Zeta.Panel.BufferBar()
 Workspace.chdir = taskbar2.chdir
 Panel['System']['taskbar2'] = taskbar2
 
-switcher = External.Switcher()
+switcher = Data.Switcher()
 Panel['System']['switcher'] = switcher
 
-wallpaper = External.Wallpaper()
+wallpaper = Data.Wallpaper()
 Panel['System']['wallpaper'] = wallpaper
 
 popup = Toplevel()
@@ -82,7 +92,6 @@ popup.attributes('-topmost', True)
 popupmsg = Label(popup, text='', bg=colorbg, fg=colorfg, font=("Lucida Console", 8, "normal"))
 popupmsg.grid(sticky='NWES')
 
-#root.tk.call("source", r"C:\Users\Administrator\Desktop\tcl\theme\Forest\void.tcl")
 style = ttk.Style()
 style.theme_use('alt')
 style.configure("Treeview", background=colorbg, foreground=colorfg, fieldbackground=colorbg)
@@ -103,10 +112,8 @@ def toggle_sidebar(*event):
 
 def tooltip_show(x, y):
 	popup.show() if Workspace.hidden else print('hidden')
-	if (y<=50 and x==0): (popupmsg.configure(text='Network'),popup.geometry('+10+10'))
-	# elif (y>50 and y<100): (popupmsg.configure(text='File'),popup.geometry('+10+50'))
-	#elif x>=1: (popupmsg.configure(text='F'),popup.geometry('+10+10'))
-	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): (popupmsg.configure(text='Lounge'),popup.geometry('+10-40'))
+	if (x<=250): (popupmsg.configure(text='Extension'),popup.geometry('+10+10'))
+	elif x>=(Zeta.System.Size.Screen.width - 250): (popupmsg.configure(text='Sector'),popup.geometry('-10+10'))
 	else: (popupmsg.configure(text=selected_workspace.get()),popup.geometry('+10+10'))
 
 def tooltip_hide():
@@ -123,10 +130,10 @@ def addworkspace(name='', switchafter=True):
 	if name=='': name = askstring('Name', 'Workspace name:')
 	printable = '#[].-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/'
 	name = ''.join(filter(lambda x: x in printable, name))
-	Panel[name] = {'root': External.Sidebar()}
+	Panel[name] = {'root': Data.Sidebar()}
 	wmenu.add_radiobutton(label=name, variable=selected_workspace, value=name, command=switch)
 	
-	path = Zeta.Utility.Format.Path('<Scraps>/workspace/void/'+name)
+	path = Zeta.Utility.Format.Path('<Scraps>/workspace/library/'+name)
 	if not os.path.exists(path): os.makedirs(path)
 	wpanel = Zeta.Utility.Launch.Explorer(color='green', mode='border', path=path, geometry=sidebar2.geometry(), panelgeometry='left')
 	Panel[name]['root'].path = path
@@ -137,7 +144,7 @@ def addworkspace(name='', switchafter=True):
 wmenu = Menu(sidebar, tearoff=0)
 wmenu.add_command(label="[ New ]", command=addworkspace)
 wmenu.add_separator()
-wmenu.add_radiobutton(label="File", variable=selected_workspace, value="File", command=switch)
+wmenu.add_radiobutton(label="Data", variable=selected_workspace, value="Data", command=switch)
 wmenu.add_separator()
 
 
@@ -149,19 +156,13 @@ class Controller():
 	def chdir(): pass
 Workspace.controller = Controller()
 
-root = External.File()
+root = Data.File()
 wallpaper.watch = root.File1
 Workspace.controller.chdir = root.File1.change_dir
-Panel['File']['root'] = root
-Panel['Network']['root'] = External.Search()
-Panel['Lounge']['root'] = External.Lounge()
+Panel['Data']['root'] = root
+Panel['Extension']['root'] = Data.Search()
+Panel['Sector']['root'] = Data.Lounge()
 
-# Panel['Console'] = {'root': External.Sidebar()}
-# Panel['Test'] = {'root': External.Sidebar()}
-# Panel['Downstream'] = {'root': External.Sidebar()}
-# wmenu.add_radiobutton(label="Console", variable=selected_workspace, value="Console", command=switch)
-# wmenu.add_radiobutton(label="Test", variable=selected_workspace, value="Test", command=switch)
-# wmenu.add_radiobutton(label="Downstream", variable=selected_workspace, value="Downstream", command=switch)
 addworkspace('Console')
 addworkspace('Test')
 addworkspace('Downstream')
@@ -177,12 +178,8 @@ if tooltip:
 
 sidebar.bind("<Button-1>", toggle_sidebar, add="+")
 sidebar.bind("<Button-3>", lambda event: wmenu.post(event.x_root, event.y_root))
-# Workspace.toggle_bind(sidebarext, sidebar2)
 Zeta.System.WM.toggle_bind(sidebarext, sidebar2)
 
-# taskbar.bind("<Enter>", lambda e: root.hide())
-# taskbar.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active))
-# sidebarext.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active), add="+")
 
 File2.controller = Workspace.controller
 
