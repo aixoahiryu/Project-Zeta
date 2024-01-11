@@ -126,21 +126,21 @@ class Wallpaper(Toplevel):
 		txt1frame = Frame(txt1f)
 		txt1frame.pack(side='top', fill='y')
 		self.imggemini=Zeta.Image.Icon.Load(icon='geminiw', icontype='bw').image
-		Button(txt1frame, text=' Thaumiel', relief='flat', image=self.imggemini, compound='left').pack(side='top')
+		Button(txt1frame, text=' Thaumiel', relief='flat', image=self.imggemini, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgeye=Zeta.Image.Icon.Load(icon='eye2w', icontype='bw').image
-		Button(txt1frame, text=' The eye', relief='flat', image=self.imgeye, compound='left').pack(side='top')
+		Button(txt1frame, text=' The eye', relief='flat', image=self.imgeye, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgmoon=Zeta.Image.Icon.Load(icon='moonw', icontype='bw').image
-		Button(txt1frame, text=' Moon cycle', relief='flat', image=self.imgmoon, compound='left').pack(side='top')
+		Button(txt1frame, text=' Moon cycle', relief='flat', image=self.imgmoon, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgsun=Zeta.Image.Icon.Load(icon='sunw', icontype='bw').image
-		Button(txt1frame, text=' Sun cycle', relief='flat', image=self.imgsun, compound='left').pack(side='top')
+		Button(txt1frame, text=' Sun cycle', relief='flat', image=self.imgsun, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgdice=Zeta.Image.Icon.Load(icon='dicew', icontype='bw').image
-		Button(txt1frame, text=' Chaos theory', relief='flat', image=self.imgdice, compound='left').pack(side='top')
+		Button(txt1frame, text=' Chaos theory', relief='flat', image=self.imgdice, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgcalendar=Zeta.Image.Icon.Load(icon='calendarw', icontype='bw').image
-		Button(txt1frame, text=' Calendar', relief='flat', image=self.imgcalendar, compound='left').pack(side='top')
+		Button(txt1frame, text=' Calendar', relief='flat', image=self.imgcalendar, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imghorse=Zeta.Image.Icon.Load(icon='horsew', icontype='bw').image
-		Button(txt1frame, text=' Strategy', relief='flat', image=self.imghorse, compound='left').pack(side='top')
+		Button(txt1frame, text=' Strategy', relief='flat', image=self.imghorse, compound='left', anchor='w').pack(side='top', fill='x')
 		self.imgwave=Zeta.Image.Icon.Load(icon='wave2w', icontype='bw').image
-		Button(txt1frame, text=' Flunctuation', relief='flat', image=self.imgwave, compound='left').pack(side='top')
+		Button(txt1frame, text=' Flunctuation', relief='flat', image=self.imgwave, compound='left', anchor='w').pack(side='top', fill='x')
 		
 		self.theme(self, bg='#000000', fg='#ffffff')
 

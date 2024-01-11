@@ -11,7 +11,7 @@ class Taskbar(Toplevel):
 		self.title('Task bar')
 		width = Zeta.System.Size.Screen.width
 		height = 25
-		self.geometry(f"{width}x{height}+0+1")
+		self.geometry(f"{width}x{height}+0+0")
 		self.overrideredirect(1)
 		#self.configure(bg=colorbg, bd=1, relief='groove')
 		Label(self, text=r'[ Workspace ]').place(relx=0.48, rely=0)

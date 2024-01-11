@@ -34,6 +34,7 @@ Workspace.active = ''
 Workspace.geometry = {'main': '', 'sidebar': ''}
 Workspace.geometry['sidebar'] = f"333x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}+30+25"
 Workspace.geometry['main'] = f"{Zeta.System.Size.Screen.width - 333 - 30 -5}x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}-1+25"
+Workspace.color = Zeta.Color.Neon(color2='nier')
 
 sidebar = Tk()
 sidebar.attributes('-topmost', True)
@@ -48,7 +49,7 @@ sidebar.geometrylock = sidebar.geometry()
 
 sidebarbump = Toplevel()
 sidebarbump.attributes('-topmost', True)
-sidebarbump.attributes('-alpha', 0.1)
+sidebarbump.attributes('-alpha', 0.01)
 width = Zeta.System.Size.Screen.width -1 -1
 sidebarbump.geometry(f"{width}x5+0+25")
 sidebarbump.overrideredirect(1)

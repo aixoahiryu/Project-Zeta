@@ -11,7 +11,7 @@ class Switcher(Window):
 		self.title('Task bar')
 		width = 25
 		height = Zeta.System.Size.Screen.height - 25 - Zeta.System.Size.taskbar
-		self.geometry(f"{width}x{height}+0+26")
+		self.geometry(f"{width}x{height}+0+25")
 		self.overrideredirect(1)
 
 		self.imgmenu=Zeta.Image.Icon.Load(icon='menuw', icontype='bw').image

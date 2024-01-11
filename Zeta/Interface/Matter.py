@@ -26,7 +26,7 @@ colorbg = "#000000" if darkmode else "#ffffff"
 colorbg2 = "#253B34" if darkmode else "#6effbe"
 colorfg = "#ffffff" if darkmode else "#000000"
 
-Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'Taskbar': {'root': ''}, 'Extension': {'root': ''}, 'Sector': {'root': ''}}
+Panel = {'System': {'sidebarext': ''}, 'Task': {'root': ''}, 'Bridge': {'root': ''}, 'Monitoring': {'root': ''}}
 __builtins__.Workspace = Zeta.System.WM.Workspace(Panel)
 __builtins__.WorkspaceColor = 'white'
 Workspace.active = ''
@@ -34,6 +34,7 @@ Workspace.active = ''
 Workspace.geometry = {'main': '', 'sidebar': ''}
 Workspace.geometry['sidebar'] = f"333x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}+30+25"
 Workspace.geometry['main'] = f"{Zeta.System.Size.Screen.width - 333 - 30 -5}x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}-1+25"
+Workspace.color = Zeta.Color.Neon(color2='white')
 
 sidebar = Tk()
 sidebar.attributes('-topmost', True)
@@ -48,18 +49,22 @@ sidebar.geometrylock = sidebar.geometry()
 
 sidebarbump = Toplevel()
 sidebarbump.attributes('-topmost', True)
-sidebarbump.attributes('-alpha', 0.1)
+sidebarbump.attributes('-alpha', 0.01)
 width = Zeta.System.Size.Screen.width -1 -1
-sidebarbump.geometry(f"{width}x5+0-{Zeta.System.Size.taskbar+1}")
+sidebarbump.geometry(f"{width}x25+0-{Zeta.System.Size.taskbar+1}")
 sidebarbump.overrideredirect(1)
 sidebarbump.configure(bg=colorbg)
 sidebarbump.show()
-sidebarbump.bind('<Enter>', lambda e: sidebar.lift())
+sidebarbump.moved = False
+sidebarbump.bind('<Leave>', lambda e: sidebar.lift())
+def bumpmove(e):
+	sidebarbump.geometry(f"+0-{Zeta.System.Size.taskbar+1}" if sidebarbump.moved else f"+0-{Zeta.System.Size.taskbar+25}")
+	sidebarbump.moved = not sidebarbump.moved
+sidebarbump.bind('<Enter>', bumpmove)
 
 sidebarext = Taskbar.Sidebar()
 Panel['System']['sidebarext'] = sidebarext
 
-# sidebar2 = Toplevel(sidebar)
 sidebar2 = Window(color2=WorkspaceColor, mode='border')
 sidebar2.title('===[ Sidebar: File ]===')
 sidebar2.attributes('-topmost', True)
@@ -68,20 +73,6 @@ height = Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25
 sidebar2.geometry(f"333x{height}-1+25")
 sidebar2.overrideredirect(1)
 File2 = FileBox(sidebar2.frame, home=Zeta.System.Path.Core.Sidebar, color2=WorkspaceColor, panelgeometry='left')
-
-taskbar = Taskbar.Taskbar()
-Panel['System']['taskbar'] = taskbar
-# taskbar2 = Taskbar.Taskbar2()
-taskbar2 = Zeta.Panel.BufferBar()
-Workspace.chdir = taskbar2.chdir
-Panel['System']['taskbar2'] = taskbar2
-taskbar2.geometry('+0-1')
-
-switcher = Taskbar.Switcher()
-Panel['System']['switcher'] = switcher
-
-wallpaper = Taskbar.Wallpaper()
-Panel['System']['wallpaper'] = wallpaper
 
 popup = Toplevel()
 popup.title('Popup')
@@ -108,18 +99,12 @@ style.configure("TNotebook.Tab", background='#000000', foreground='#ffffff')
 def toggle_sidebar(*event):
 	if (not Workspace.hidden) and (popupmsg.cget('text')!=Workspace.active): Workspace.switch(popupmsg.cget('text'))
 	else: Workspace.toggle_sidebar(popupmsg.cget('text'))
-	wallpaper.preview_clipboard()
 	if sidebar.geometry()!=sidebar.geometrylock: sidebar.geometry(sidebar.geometrylock)
 
 def tooltip_show(x, y):
-	popup.show() if Workspace.hidden else print('hidden')
-	if (x<=250): (popupmsg.configure(text='Extension'),popup.geometry('+10+10'))
-	elif x>=(Zeta.System.Size.Screen.width - 250): (popupmsg.configure(text='Sector'),popup.geometry('-10+10'))
-	else: (popupmsg.configure(text=selected_workspace.get()),popup.geometry('+10+10'))
-
-def tooltip_hide():
-	popup.hide() if Workspace.hidden else print('hidden')
-
+	if (x<=50): popupmsg.configure(text='Bridge')
+	elif x>=(Zeta.System.Size.Screen.width - 500): popupmsg.configure(text='Monitoring')
+	else: popupmsg.configure(text=selected_workspace.get())
 
 selected_workspace = tk.StringVar()
 def switch(name=''):
@@ -143,30 +128,21 @@ def addworkspace(name='', switchafter=True):
 	if switchafter: switch(name)
 
 wmenu = Menu(sidebar, tearoff=0)
-wmenu.add_command(label="[ New ]", command=addworkspace)
-wmenu.add_separator()
-wmenu.add_radiobutton(label="Taskbar", variable=selected_workspace, value="Taskbar", command=switch)
+wmenu.add_radiobutton(label='Task', variable=selected_workspace, value='Task', command=switch)
 wmenu.add_separator()
 
 
 #-------------------------------------------------------------------------------
 
-class Controller():
-	def toggle_sidebar(child): toggle_sidebar()
-	def preview_file(child, path): wallpaper.preview_file(path)
-	def chdir(): pass
-Workspace.controller = Controller()
+Panel['Task']['root'] = Taskbar.Task()
+Panel['Bridge']['root'] = Taskbar.Bridge()
+Panel['Monitoring']['root'] = Taskbar.Monitoring()
 
-root = Taskbar.File()
-wallpaper.watch = root.File1
-Workspace.controller.chdir = root.File1.change_dir
-Panel['Taskbar']['root'] = root
-Panel['Extension']['root'] = Taskbar.Search()
-Panel['Sector']['root'] = Taskbar.Lounge()
+Panel['Task']['taskbar'] = Taskbar.Task2()
+Panel['Bridge']['wallpaper'] = Taskbar.Wallpaper()
+Panel['Monitoring']['wallpaper'] = Taskbar.Wallpaper()
 
-addworkspace('Console')
-addworkspace('Test')
-addworkspace('Downstream')
+addworkspace(r'Drag & Drop')
 wmenu.add_separator()
 
 #-------------------------------------------------------------------------------
@@ -174,8 +150,6 @@ wmenu.add_separator()
 if tooltip:
 	sidebar.bind("<Enter>", lambda e: tooltip_show(e.x, e.y))
 	sidebar.bind('<Motion>', lambda e: tooltip_show(e.x, e.y))
-	sidebar.bind("<Leave>", lambda e: tooltip_hide())
-	sidebar.bind("<Button-1>", lambda e: tooltip_hide())
 
 sidebar.bind("<Button-1>", toggle_sidebar, add="+")
 sidebar.bind("<Button-3>", lambda event: wmenu.post(event.x_root, event.y_root))
