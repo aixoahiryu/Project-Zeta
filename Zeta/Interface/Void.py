@@ -26,7 +26,7 @@ colorbg = "#000000" if darkmode else "#ffffff"
 colorbg2 = "#253B34" if darkmode else "#6effbe"
 colorfg = "#ffffff" if darkmode else "#000000"
 
-Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'File': {'root': ''}, 'Network': {'root': ''}, 'Lounge': {'root': ''}}
+Panel = {'System': {'taskbar': '', 'wallpaper': ''}, 'File': {'root': ''}, 'Filter': {'root': ''}, 'Network': {'root': ''}, 'Lounge': {'root': ''}}
 __builtins__.Workspace = Zeta.System.WM.Workspace(Panel)
 __builtins__.WorkspaceColor = 'white'
 Workspace.active = ''
@@ -138,6 +138,7 @@ wmenu = Menu(sidebar, tearoff=0)
 wmenu.add_command(label="[ New ]", command=addworkspace)
 wmenu.add_separator()
 wmenu.add_radiobutton(label="File", variable=selected_workspace, value="File", command=switch)
+wmenu.add_radiobutton(label="Filter", variable=selected_workspace, value="Filter", command=switch)
 wmenu.add_separator()
 
 
@@ -153,6 +154,7 @@ root = External.File()
 wallpaper.watch = root.File1
 Workspace.controller.chdir = root.File1.change_dir
 Panel['File']['root'] = root
+Panel['Filter']['root'] = External.Filter()
 Panel['Network']['root'] = External.Search()
 Panel['Lounge']['root'] = External.Lounge()
 

@@ -1,4 +1,5 @@
 from .File.Main import File
+from .Filter.Main import Filter
 from .Lounge.Main import Lounge
 from .Network.Search.Main import Search
 

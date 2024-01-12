@@ -21,4 +21,4 @@ class Task(Toplevel):
 		Label(appframe, text='Filter', width=33).pack(side='left', fill='y')
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
-		self.neon = 'white'
+		self.color2 = 'white'

@@ -1,0 +1,14 @@
+Mind|<Home>/[ Mind ]
+File|<Home>/[ File ]
+Network|<Home>/[ Network ]
+-------------
+<X>/Void/[ Workspace ]/Commit
+[ Main ]
+---
+Coding
+Hacking
+RE
+Forensics
+---
+E
+F

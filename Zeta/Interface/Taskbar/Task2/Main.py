@@ -20,3 +20,4 @@ class Task2(Toplevel):
 		Button2(appframe, text='F', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<Scraps>/tab/[ Furry ]')
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
+		self.color2 = 'white'
