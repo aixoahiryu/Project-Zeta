@@ -102,12 +102,12 @@ def toggle_sidebar(*event):
 	if sidebar.geometry()!=sidebar.geometrylock: sidebar.geometry(sidebar.geometrylock)
 
 def tooltip_show(x, y):
-	popup.show() if Workspace.hidden else print('hidden')
-	if (y<=50 and x==0): (popupmsg.configure(text='Network'),popup.geometry('+10+10'))
+	#popup.show() if Workspace.hidden else print('hidden')
+	if (y<=50 and x==0): popupmsg.configure(text='Network')
 	# elif (y>50 and y<100): (popupmsg.configure(text='File'),popup.geometry('+10+50'))
 	#elif x>=1: (popupmsg.configure(text='F'),popup.geometry('+10+10'))
-	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): (popupmsg.configure(text='Lounge'),popup.geometry('+10-40'))
-	else: (popupmsg.configure(text=selected_workspace.get()),popup.geometry('+10+10'))
+	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): popupmsg.configure(text='Lounge')
+	else: popupmsg.configure(text=selected_workspace.get())
 
 def tooltip_hide():
 	popup.hide() if Workspace.hidden else print('hidden')

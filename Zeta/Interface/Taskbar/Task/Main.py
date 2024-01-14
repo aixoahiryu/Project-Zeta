@@ -14,9 +14,9 @@ class Task(Toplevel):
 
 		appframe = Frame(self)
 		appframe.pack(side='left', fill='y')
-		Button2(appframe, text='Mind', relief='flat', image=self.imgbrain, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<X>/Matter/Filter/Mind')
-		Button2(appframe, text='File', relief='flat', image=self.imghdd, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<X>/Matter/Filter/File')
-		Button2(appframe, text='Network', relief='flat', image=self.imgram, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<X>/Matter/Filter/Network')
+		Button2(appframe, text='Mind', relief='flat', image=self.imgbrain, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<Scraps>/filter/[ Mind ]')
+		Button2(appframe, text='File', relief='flat', image=self.imghdd, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<Scraps>/filter/[ File ]')
+		Button2(appframe, text='Network', relief='flat', image=self.imgram, compound='left', side='left', fill='y', geometry='top', listdir=True, path='<Scraps>/filter/[ Network ]')
 		Frame2(appframe, side='left', fill='y', highlightthickness=1, highlightcolor='#c9c9c9')
 		Label(appframe, text='Filter', width=33).pack(side='left', fill='y')
 

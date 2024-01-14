@@ -84,10 +84,10 @@ def toggle_sidebar(*event):
 def tooltip_show(x, y):
 	#popup.show() if hidden else print(e)
 	if Workspace.hidden:
-		if y<=Zeta.System.Size.Window.aimp[1]: (popupmsg.configure(text='Monolith'),popup.geometry('-10+10'),popup.show())
+		if y<=Zeta.System.Size.Window.aimp[1]: popupmsg.configure(text='Monolith')
 		#elif x>=1: (popupmsg.configure(text='_'),popup.geometry('-10+10'),popup.show())
-		elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): (popupmsg.configure(text='Launch'),popup.geometry('-10-40'),popup.show())
-		else: (popupmsg.configure(text='Command'),popup.hide())
+		elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): popupmsg.configure(text='Launch')
+		else: popupmsg.configure(text='Command')
 
 def tooltip_hide():
 	popup.hide() if Workspace.hidden else print('hidden')
