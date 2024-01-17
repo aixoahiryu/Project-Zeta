@@ -1,5 +1,4 @@
 import Zeta
-import Taskbar
 from Zeta.Panel import *
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -35,6 +34,7 @@ Workspace.geometry = {'main': '', 'sidebar': ''}
 Workspace.geometry['sidebar'] = f"333x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}+30+25"
 Workspace.geometry['main'] = f"{Zeta.System.Size.Screen.width - 333 - 30 -5}x{Zeta.System.Size.Screen.height - Zeta.System.Size.taskbar - 25}-1+25"
 Workspace.color = Zeta.Color.Neon(color2='white')
+import Taskbar
 
 sidebar = Tk()
 sidebar.attributes('-topmost', True)
@@ -60,7 +60,7 @@ sidebarbump.bind('<Leave>', lambda e: sidebar.lift())
 def bumpmove(e):
 	sidebarbump.geometry(f"+0-{Zeta.System.Size.taskbar+1}" if sidebarbump.moved else f"+0-{Zeta.System.Size.taskbar+25}")
 	sidebarbump.moved = not sidebarbump.moved
-sidebarbump.bind('<Enter>', bumpmove)
+sidebarbump.bind('<Motion>', bumpmove)
 
 sidebarext = Taskbar.Sidebar()
 Panel['System']['sidebarext'] = sidebarext
@@ -116,7 +116,7 @@ def addworkspace(name='', switchafter=True):
 	if name=='': name = askstring('Name', 'Workspace name:')
 	printable = '#[].-0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/'
 	name = ''.join(filter(lambda x: x in printable, name))
-	Panel[name] = {'root': Taskbar.Sidebar()}
+	Panel[name] = {'root': Taskbar.Sidebar(), 'task': Taskbar.Task()}
 	wmenu.add_radiobutton(label=name, variable=selected_workspace, value=name, command=switch)
 	
 	path = Zeta.Utility.Format.Path('<Scraps>/workspace/matter/'+name)
@@ -127,10 +127,20 @@ def addworkspace(name='', switchafter=True):
 	Zeta.System.WM.toggle_bind(Panel[name]['root'], wpanel)
 	if switchafter: switch(name)
 
+Workspace.widget = {'dragdrop': [Taskbar.DragDrop(), tk.BooleanVar(value=False)], 'console': [Taskbar.Console(), tk.BooleanVar(value=False)], 'notepad': [Taskbar.Notepad(), tk.BooleanVar(value=False)]}
+def widget(name):
+	if Workspace.widget[name][1].get(): Workspace.widget[name][0].show()
+	else: Workspace.widget[name][0].hide()
+
 wmenu = Menu(sidebar, tearoff=0)
+wmenu.add_command(label="[ New ]", command=addworkspace)
+wmenu.add_separator()
 wmenu.add_radiobutton(label='Task', variable=selected_workspace, value='Task', command=switch)
 wmenu.add_separator()
-
+wmenu.add_checkbutton(label=r'Drag & Drop', command=lambda: widget('dragdrop'), variable=Workspace.widget['dragdrop'][1], onvalue=True, offvalue=False)
+wmenu.add_checkbutton(label=r'Notepad', command=lambda: widget('notepad'), variable=Workspace.widget['notepad'][1], onvalue=True, offvalue=False)
+wmenu.add_checkbutton(label=r'Console', command=lambda: widget('console'), variable=Workspace.widget['console'][1], onvalue=True, offvalue=False)
+wmenu.add_separator()
 
 #-------------------------------------------------------------------------------
 
@@ -141,9 +151,6 @@ Panel['Monitoring']['root'] = Taskbar.Monitoring()
 Panel['Task']['taskbar'] = Taskbar.Task2()
 Panel['Bridge']['wallpaper'] = Taskbar.Wallpaper()
 Panel['Monitoring']['wallpaper'] = Taskbar.Wallpaper()
-
-addworkspace(r'Drag & Drop')
-wmenu.add_separator()
 
 #-------------------------------------------------------------------------------
 

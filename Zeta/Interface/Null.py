@@ -81,6 +81,11 @@ def toggle_sidebar(*event):
 	# if sidebarext.on: Zeta.System.WM.toggle(sidebarext)
 	# if btnoverflow.on: Zeta.System.WM.toggle(btnoverflow)
 
+def rightclick_sidebar(x, y):
+	if y<=Zeta.System.Size.Window.aimp[1]: Zeta.System.OS.edit('<Downstream>')
+	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): Zeta.System.OS.launch('<X>/Null/[ Program ]/Utility/Link.py')
+	else: Workspace.toggle_sidebar('Whiteboard')
+
 def tooltip_show(x, y):
 	#popup.show() if hidden else print(e)
 	if Workspace.hidden:
@@ -112,7 +117,7 @@ if tooltip:
 	sidebar.bind("<Button-1>", lambda e: tooltip_hide())
 
 sidebar.bind("<Button-1>", toggle_sidebar, add="+")
-sidebar.bind("<Button-3>", lambda e: Workspace.toggle_sidebar('Whiteboard'), add="+")
+sidebar.bind("<Button-3>", lambda e: rightclick_sidebar(e.x, e.y), add="+")
 # Workspace.toggle_bind(sidebarext, sidebar2)
 # sidebarext.bind("<Button-1>", lambda event: Workspace.hide(Workspace.active), add="+")
 

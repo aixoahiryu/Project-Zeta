@@ -5,6 +5,7 @@ from tkinter import Tk
 from tkinter import Button
 from .Button2 import Button2
 from tkinter import Label
+from .Label2 import Label2
 from tkinter import Frame
 from .Frame2 import Frame2
 from tkinter import Message

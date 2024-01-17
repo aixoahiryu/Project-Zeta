@@ -112,7 +112,7 @@ class Camp(Window):
 		Frame(x.frame, highlightbackground=self.neon, highlightthickness=1).pack(side='top', fill='x')
 		Button(x.frame, text='Project Moon[ Lobotomy Corporation, Library of Ruina, Limbus Company ]', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text='OF MICE AND SAND', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
-		Button(x.frame, text='Frostpunk', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
+		Button(x.frame, text='Frostpunk, Frostrain', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text='Beholder', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text='Papers please, Mind Scanners', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
 		Button(x.frame, text='Do Not Feed the Monkeys', relief='flat', image=self.corner, compound='left', anchor='w').pack(side='top', fill='x')
