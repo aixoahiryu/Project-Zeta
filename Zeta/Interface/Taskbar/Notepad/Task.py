@@ -4,9 +4,8 @@ from Zeta.Panel import *
 class NotepadTask(Toplevel):
 	def __init__(self, *args, **kwargs):
 		Toplevel.__init__(self, *args, **kwargs)
-		self.attributes('-topmost', True)
 		self.attributes('-alpha', Zeta.Setting.opacityneon)
-		self.geometry(f"{Zeta.System.Size.Window.side[0]}x25-0+0")
+		self.geometry(f"{Zeta.System.Size.Window.side[0]}x20-0+0")
 		self.overrideredirect(1)
 
 		appframe = Frame(self)
@@ -16,7 +15,7 @@ class NotepadTask(Toplevel):
 		Button2(appframe, text='Enhancement', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Task/Enhancement')
 		Button2(appframe, text='Explore', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Task/Explore')
 		Frame2(self, side='right', fill='y', highlightthickness=1, highlightcolor='#c9c9c9')
-		Label2(self, text='Task', width=33, side='right', fill='both').bind("<Button-3>", lambda event: Workspace.notepadmenu.post(event.x_root, event.y_root))
+		Label2(self, text='Task', side='right', fill='both', width=33).bind("<Button-3>", lambda event: Workspace.notepadmenu.post(event.x_root, event.y_root))
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
 		self.color2 = 'white'

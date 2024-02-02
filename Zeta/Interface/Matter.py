@@ -127,7 +127,7 @@ def addworkspace(name='', switchafter=True):
 	Zeta.System.WM.toggle_bind(Panel[name]['root'], wpanel)
 	if switchafter: switch(name)
 
-Workspace.widget = {'dragdrop': [Taskbar.DragDrop(), tk.BooleanVar(value=False)], 'console': [Taskbar.Console(), tk.BooleanVar(value=False)], 'notepad': [Taskbar.Notepad(), tk.BooleanVar(value=False)]}
+Workspace.widget = {'dragdrop': [Taskbar.DragDrop(), tk.BooleanVar(value=False)], 'console': [Taskbar.Console(), tk.BooleanVar(value=False)], 'notepad': [Taskbar.Notepad(), tk.BooleanVar(value=False)], 'voidnote': [Taskbar.VoidNote(), tk.BooleanVar(value=False)]}
 def widget(name):
 	if Workspace.widget[name][1].get(): Workspace.widget[name][0].show()
 	else: Workspace.widget[name][0].hide()
@@ -139,6 +139,7 @@ wmenu.add_radiobutton(label='Task', variable=selected_workspace, value='Task', c
 wmenu.add_separator()
 wmenu.add_checkbutton(label=r'Drag & Drop', command=lambda: widget('dragdrop'), variable=Workspace.widget['dragdrop'][1], onvalue=True, offvalue=False)
 wmenu.add_checkbutton(label=r'Notepad', command=lambda: widget('notepad'), variable=Workspace.widget['notepad'][1], onvalue=True, offvalue=False)
+wmenu.add_checkbutton(label=r'Void note', command=lambda: widget('voidnote'), variable=Workspace.widget['voidnote'][1], onvalue=True, offvalue=False)
 wmenu.add_checkbutton(label=r'Console', command=lambda: widget('console'), variable=Workspace.widget['console'][1], onvalue=True, offvalue=False)
 wmenu.add_separator()
 

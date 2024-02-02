@@ -112,6 +112,11 @@ def tooltip_show(x, y):
 def tooltip_hide():
 	popup.hide() if Workspace.hidden else print('hidden')
 
+def rightclick_sidebar(x, y):
+	if y<=Zeta.System.Size.Window.aimp[1]: Panel['Network']['root'].search(query=sidebar.clipboard_get(), browser='Lite')
+	elif y>=(Zeta.System.Size.Screen.height - Zeta.System.Size.Window.mpv[1] - Zeta.System.Size.taskbar): wmenu.post(x, y)
+	else: wmenu.post(x, y)
+
 
 selected_workspace = tk.StringVar()
 def switch(name=''):
@@ -178,7 +183,7 @@ if tooltip:
 	sidebar.bind("<Button-1>", lambda e: tooltip_hide())
 
 sidebar.bind("<Button-1>", toggle_sidebar, add="+")
-sidebar.bind("<Button-3>", lambda event: wmenu.post(event.x_root, event.y_root))
+sidebar.bind("<Button-3>", lambda e: rightclick_sidebar(e.x, e.y))
 # Workspace.toggle_bind(sidebarext, sidebar2)
 Zeta.System.WM.toggle_bind(sidebarext, sidebar2)
 

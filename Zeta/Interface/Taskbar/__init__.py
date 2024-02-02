@@ -9,3 +9,4 @@ from .sidebarext import Sidebar
 from .Console.Main import Console
 from .DragDrop.Main import DragDrop
 from .Notepad.Main import Notepad
+from .VoidNote.Main import VoidNote

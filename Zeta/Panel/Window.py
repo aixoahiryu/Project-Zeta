@@ -39,6 +39,7 @@ class Fallback(Toplevel2):
         self.color2 = color2
         self.neon = Zeta.Color.Neon(color=color, color2=color2).hex
         self.hue = Zeta.Color.Neon(color=color, color2=color2).hue
+        # self['background'] = self.hue
         if draggable: self.bind_rightclick()
 
         frame1 = Frame(self)

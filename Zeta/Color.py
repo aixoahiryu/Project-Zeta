@@ -12,6 +12,9 @@ class Neon():
 		self._name1['blue'] = ['#00FFFF', '#014040', '#015c5c', 'dark']
 		self._name1['purple'] = ['#bc13fe', '#2a0538', '#3f0854', 'dark']
 
+		self._name1['green2'] = ['#05E19C', '#012117', '#204136', 'dark']
+
+
 		# --------------------------Extension---------------------------
 		self._name1['nier'] = [Nier.foreground, Nier.background, Nier.tint, 'light', 'mono']
 		self._name1['ink'] = [Ink.foreground, Ink.background, Ink.tint, 'light', 'mono']

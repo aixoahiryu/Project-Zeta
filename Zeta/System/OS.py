@@ -14,7 +14,7 @@ def finish():
 	Workspace.toggle_sidebar()
 
 def launch(fullpath, program='', custom=''):
-	fullpath = Zeta.Utility.Format.Path(fullpath)
+	if not fullpath.startswith(('http', 'ftp', 'git')): fullpath = Zeta.Utility.Format.Path(fullpath)
 	tools = {'browser': Zeta.System.Path.Browser.main, 'lite': Zeta.System.Path.Browser.lite}
 	tools['editor'] = Zeta.System.Path.Editor.main
 	tools['sidebar'] = Zeta.System.Path.Editor.sidebar
