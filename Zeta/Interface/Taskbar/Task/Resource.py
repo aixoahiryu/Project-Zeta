@@ -16,7 +16,7 @@ class Resource(Toplevel):
 		Button2(appframe, text='Σ[  ]', relief='raised', side='right', fill='y', geometry='top', listdir=True, path='<Resource>/Matter/Σ[  ]')
 		Button2(appframe, text='Δ[  ]', relief='raised', side='right', fill='y', geometry='top', listdir=True, path='<Resource>/Matter/Δ[  ]')
 		Button2(appframe, text='Temp', relief='raised', image=self.imghdd, compound='left', side='right', fill='y', geometry='top', listdir=True, path='<Resource>/Matter/Temp')
-		Label(self, text='Resource', width=33).pack(side='left', fill='y')
+		Button2(self, text='Resource', side='left', fill='both', width=55, anchor='center', relief='flat', geometry='top', listdir=True, path='<X>/Matter/Task/Resource')
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
 		self.color2 = 'white'

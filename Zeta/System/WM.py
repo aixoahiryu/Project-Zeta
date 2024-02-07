@@ -34,10 +34,10 @@ def geocalc(child, widget, geometry, anchor='widget'):
 		left = left - cwidth -5
 		top = top
 
-	if (left+cwidth) > Zeta.System.Size.Screen.width: left = Zeta.System.Size.Screen.width - cwidth
-	if (top+cheight) > Zeta.System.Size.Screen.height: top = Zeta.System.Size.Screen.height - cheight
-	if left < 0: left = 0
-	if top < 0: top = 0
+	if (left+cwidth) > Zeta.System.Size.Screen.width: left = Zeta.System.Size.Screen.width - cwidth -1
+	if (top+cheight) > Zeta.System.Size.Screen.height: top = Zeta.System.Size.Screen.height - cheight -1
+	if left < 0: left = 1
+	if top < 0: top = 1
 
 	# print(f'{ref.winfo_x()}:{ref.winfo_y()} | {child.winfo_height()}:{child.winfo_width()} > {left}:{top}')
 

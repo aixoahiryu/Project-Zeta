@@ -1,8 +1,11 @@
-# Theming engine
+# Project Zeta
+
+## Theming engine
 ![Window color](https://i.imgur.com/SiEIc5b.png)
+![Zeta Editor](https://i.imgur.com/ObjuUdj.png)
 
 
-# Null workspace
+## Null workspace
 
 1. [1/4] Monolith
 ![Monolith](https://i.imgur.com/VW6kiyd.png)
@@ -11,7 +14,7 @@
 ![Planner](https://i.imgur.com/bS7jPai.png)
 
 
-# Void workspace
+## Void workspace
 
 1. [1/3+] File
 ![File](https://i.imgur.com/hgBSM8a.png)
@@ -25,8 +28,8 @@
 4. Entertainment sector
 ![Entertainment sector](https://i.imgur.com/PVDaBWP.png)
 
-# Library workspace
+## Library workspace
 
-# Matter workspace
+## Matter workspace
 1. Main
 ![Main desktop](https://i.imgur.com/yIeyFIV.png)

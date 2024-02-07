@@ -14,10 +14,11 @@ class Task2(Toplevel):
 
 		appframe = Frame(self)
 		appframe.pack(side='left', fill='y')
-		Button2(appframe, text='Tab', relief='flat', image=self.imgtab, compound='left', side='left', fill='y', geometry='bottom', listdir=True, path='<Scraps>/tab/# Commit')
+		Button2(appframe, text='[ Core ]', relief='flat', image=self.imgtab, compound='left', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Tab/CORE')
 		Frame2(appframe, side='left', fill='y', highlightthickness=1, highlightcolor='#c9c9c9')
-		Button2(appframe, text='E', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<Scraps>/tab/[ Entertainment ]')
-		Button2(appframe, text='F', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<Scraps>/tab/[ Furry ]')
+		Button2(appframe, text='Social', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Tab/Social')
+		Button2(appframe, text='Local', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Tab/Local')
+		Button2(appframe, text='Remote', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Tab/Remote')
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
 		self.color2 = 'white'
