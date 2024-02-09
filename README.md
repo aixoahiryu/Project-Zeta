@@ -33,3 +33,8 @@
 ## Matter workspace
 1. Main
 ![Main desktop](https://i.imgur.com/yIeyFIV.png)
+
+
+# Misc.
+## Hyper search
+![Hypersearch](https://imgur.com/U6YYu7I.png)
