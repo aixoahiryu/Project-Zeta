@@ -15,11 +15,17 @@ class Neon():
 		self._name1['green2'] = ['#05E19C', '#012117', '#204136', 'dark']
 
 
-		# --------------------------Extension---------------------------
+		# ==========================[ Extension ]==========================
 		self._name1['nier'] = [Nier.foreground, Nier.background, Nier.tint, 'light', 'mono']
 		self._name1['ink'] = [Ink.foreground, Ink.background, Ink.tint, 'light', 'mono']
 		self._name1['quantum'] = [Quantum.foreground, Quantum.background, Quantum.tint, 'light', 'mono']
-		# --------------------------------------------------------------
+		# =================================================================
+
+
+		# ==========================[ Emergency ]==========================
+		self._name1['green'] = ['#ffffff', '#000000', '#666666', 'dark', 'mono']
+		# =================================================================
+
 
 		self.hex = self._color[color]
 		if color2 != '':
@@ -30,6 +36,7 @@ class Neon():
 			self.hue = self._name1[color2][1]
 			self.tint = self._name1[color2][2]
 			self.raw = self._name1[color2]
+
 
 class Gradient():
 	def __init__(self, color=7, color2=''):

@@ -15,7 +15,7 @@ class NotepadTemp(Toplevel):
 		Button2(appframe, text='Vault', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Temp/Vault')
 		Button2(appframe, text='Static', relief='flat', side='left', fill='y', geometry='bottom', listdir=True, path='<X>/Matter/Task/Temp/Static')
 		Frame2(self, side='right', fill='y', highlightthickness=1, highlightcolor='#c9c9c9')
-		Label2(self, text='Temp', side='right', fill='both', width=33).bind("<Button-3>", lambda event: Workspace.notepadmenu.post(event.x_root, event.y_root))
+		Button2(self, text='Temp', side='left', fill='both', width=55, anchor='center', relief='flat', geometry='bottom', listdir=True, path='<X>/Matter/Quick/Temp').bind("<Button-3>", lambda event: Workspace.notepadmenu.post(event.x_root, event.y_root))
 
 		self.theme(self, bg=Workspace.color.hue, fg=Workspace.color.hex)
 		self.color2 = 'white'

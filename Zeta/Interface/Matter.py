@@ -38,7 +38,7 @@ import Taskbar
 
 sidebar = Tk()
 sidebar.attributes('-topmost', True)
-sidebar.attributes('-alpha', 0.1)
+# sidebar.attributes('-alpha', 0.1)
 sidebar.title('1px')
 width = Zeta.System.Size.Screen.width -1 -1
 sidebar.geometry(f"{width}x1+0-0")
